@@ -1,0 +1,2666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🍽 BudgetSmart Meals Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+:root {
+  --primary: #10b981;
+  --primary-light: #34d399;
+  --primary-dark: #059669;
+  --secondary: #8b5cf6;
+  --secondary-light: #a78bfa;
+  --danger: #ef4444;
+  --danger-dark: #dc2626;
+  --warning: #f59e0b;
+  --info: #3b82f6;
+  --accent: #f472b6;
+  
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f1f5f9;
+  --bg-glass: rgba(255,255,255,0.92);
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --border-color: #e2e8f0;
+  --shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
+  --shadow-lg: 0 35px 60px -15px rgba(0,0,0,0.2);
+  --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.05);
+  --gradient-bg: linear-gradient(135deg, #6366f1 0%, #8b5cf6 33%, #d946ef 66%, #f472b6 100%);
+  --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, #7c3aed 100%);
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --bg-glass: rgba(30,41,59,0.92);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border-color: #334155;
+  --shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+  --shadow-lg: 0 35px 60px -15px rgba(0,0,0,0.6);
+  --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.2);
+  --gradient-bg: linear-gradient(135deg, #1e1b4b 0%, #312e81 33%, #581c87 66%, #701a75 100%);
+}
+
+* {margin:0; padding:0; box-sizing:border-box; transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;}
+
+body {
+  font-family:'Plus Jakarta Sans',sans-serif;
+  min-height:100vh;
+  background: var(--gradient-bg);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding: 24px;
+  color: var(--text-primary);
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.container {width:100%; max-width:1280px; position:relative; z-index:1;}
+
+/* Animated Background Elements */
+.bg-shapes {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.bg-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.3;
+  animation: floatShape 20s ease-in-out infinite;
+}
+.bg-shape:nth-child(1) {
+  width: 400px; height: 400px;
+  background: var(--primary);
+  top: -100px; left: -100px;
+  animation-delay: 0s;
+}
+.bg-shape:nth-child(2) {
+  width: 300px; height: 300px;
+  background: var(--secondary);
+  top: 50%; right: -50px;
+  animation-delay: -5s;
+}
+.bg-shape:nth-child(3) {
+  width: 350px; height: 350px;
+  background: var(--accent);
+  bottom: -100px; left: 30%;
+  animation-delay: -10s;
+}
+@keyframes floatShape {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -30px) scale(1.1); }
+  50% { transform: translate(-20px, 20px) scale(0.9); }
+  75% { transform: translate(20px, 30px) scale(1.05); }
+}
+
+/* Floating Particles */
+.particles {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.particle {
+  position: absolute;
+  width: 6px; height: 6px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 50%;
+  animation: float 25s infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+}
+
+.card {
+  background: var(--bg-glass);
+  border-radius: 32px;
+  box-shadow: var(--shadow-lg);
+  overflow:hidden;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.25);
+  animation: slideUp 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(50px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  position: fixed;
+  top: 24px; right: 24px;
+  z-index: 1000;
+  background: var(--bg-glass);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50px;
+  padding: 12px 16px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+.theme-toggle:hover {
+  transform: scale(1.05);
+}
+
+/* LOGIN */
+.login {padding:56px; text-align:center;}
+.brand {
+  margin-bottom: 40px;
+}
+.brand-icon {
+  width: 100px; height: 100px;
+  background: var(--gradient-primary);
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 3rem;
+  box-shadow: 0 25px 50px rgba(16,185,129,0.35);
+  animation: pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 25px 50px rgba(16,185,129,0.35); }
+  50% { transform: scale(1.05); box-shadow: 0 30px 60px rgba(16,185,129,0.45); }
+}
+.login h1 {
+  font-size: 2.8rem;
+  font-weight: 900;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.subtitle {color: var(--text-secondary); margin-bottom: 40px; font-size: 1.15rem; font-weight: 500;}
+
+.login-tabs {
+  display:flex;
+  gap: 12px;
+  margin-bottom:36px;
+  background: var(--bg-primary);
+  padding: 8px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+}
+.login-tabs button {
+  flex:1;
+  padding:16px;
+  border:none;
+  cursor:pointer;
+  background:transparent;
+  border-radius: 14px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  transition: all 0.3s;
+  font-size: 1rem;
+}
+.login-tabs button.active {
+  background: var(--bg-secondary);
+  color: var(--primary);
+  box-shadow: var(--shadow-sm);
+}
+.login-tabs button:hover:not(.active) {
+  color: var(--text-primary);
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+  text-align: left;
+}
+.input-group i {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+.input-group input {
+  width:100%;
+  padding:18px 18px 18px 52px;
+  border-radius:18px;
+  border:2px solid var(--border-color);
+  font-size: 1rem;
+  transition: all 0.3s;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+.input-group input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 5px rgba(16,185,129,0.12);
+}
+.input-group label {
+  position: absolute;
+  left: 52px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+  transition: all 0.3s;
+  background: var(--bg-secondary);
+  padding: 0 6px;
+  font-weight: 500;
+}
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+  top: 0;
+  font-size: 0.8rem;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.btn-primary {
+  width:100%;
+  padding:20px;
+  background: var(--gradient-primary);
+  color:white;
+  border:none;
+  border-radius:18px;
+  cursor:pointer;
+  font-weight: 800;
+  font-size: 1.15rem;
+  transition: all 0.3s;
+  box-shadow: 0 15px 35px rgba(16,185,129,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  letter-spacing: 0.01em;
+}
+.btn-primary:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 45px rgba(16,185,129,0.45);
+}
+.btn-primary:active { transform: translateY(-2px); }
+
+/* Saved Accounts */
+.saved-accounts-title {
+  font-weight:800;
+  margin-top:36px;
+  text-align:left;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.saved-accounts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+.saved-account {
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  padding: 14px;
+  background: var(--bg-primary);
+  border-radius: 16px;
+  border: 2px solid var(--border-color);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.saved-account:hover {
+  background: var(--bg-secondary);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--primary);
+}
+.saved-account-avatar {
+  width: 40px; height: 40px;
+  background: var(--gradient-primary);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 800;
+  font-size: 1rem;
+}
+.saved-account-info {
+  flex: 1;
+  text-align: left;
+}
+.saved-account-name {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+.saved-account-action {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+.delete-btn {
+  background: transparent;
+  color: var(--danger);
+  border: none;
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.delete-btn:hover { background: rgba(239,68,68,0.1); transform: scale(1.1); }
+
+/* APP */
+.topbar {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:28px 36px;
+  background: var(--bg-primary);
+  border-bottom:1px solid var(--border-color);
+}
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.user-avatar {
+  width: 56px; height: 56px;
+  background: var(--gradient-primary);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.6rem;
+  box-shadow: 0 12px 28px rgba(16,185,129,0.35);
+}
+#loggedUser {
+  font-weight:800;
+  font-size:1.4rem;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+}
+.user-greeting {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+.topbar-actions {
+  display: flex;
+  gap: 14px;
+}
+.icon-btn {
+  width: 50px; height: 50px;
+  border-radius: 16px;
+  border: 2px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all 0.3s;
+}
+.icon-btn:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(16,185,129,0.35);
+}
+
+.tabs {
+  display:flex;
+  padding: 0 36px;
+  gap: 8px;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+}
+.tab-btn {
+  flex:1;
+  padding:20px;
+  border:none;
+  cursor:pointer;
+  background:transparent;
+  font-weight: 700;
+  color: var(--text-secondary);
+  position: relative;
+  transition: all 0.3s;
+  border-bottom: 4px solid transparent;
+  margin-bottom: -1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1rem;
+}
+.tab-btn:hover { color: var(--primary); background: rgba(16,185,129,0.05); }
+.tab-btn.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  background: var(--bg-secondary);
+}
+.tab-btn i { font-size: 1.15rem; }
+
+.content {
+  padding:36px;
+  min-height: 550px;
+  background: var(--bg-primary);
+}
+
+.tab-content {display:none; animation: fadeIn 0.5s ease;}
+.tab-content.active {display:block;}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Planner Tab */
+.planner-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.budget-display {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.budget-input-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--bg-secondary);
+  padding: 16px 24px;
+  border-radius: 20px;
+  border: 2px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.budget-input-group i {
+  color: var(--primary);
+  font-size: 1.5rem;
+}
+
+.budget-input-group input {
+  border: none;
+  background: transparent;
+  font-size: 1.8rem;
+  font-weight: 800;
+  width: 140px;
+  color: var(--text-primary);
+}
+
+.budget-input-group input:focus {
+  outline: none;
+}
+
+.budget-input-group span {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+/* Selection Summary Bar */
+.selection-summary {
+  background: var(--gradient-secondary);
+  border-radius: 24px;
+  padding: 24px 32px;
+  margin-bottom: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  box-shadow: 0 20px 50px rgba(139, 92, 246, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+.selection-summary::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  animation: shimmer 3s infinite;
+}
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.selection-info {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+.selection-stat {
+  display: flex;
+  flex-direction: column;
+}
+.selection-stat-value {
+  font-size: 2rem;
+  font-weight: 900;
+}
+.selection-stat-label {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  font-weight: 500;
+}
+.selection-actions {
+  position: relative;
+  z-index: 1;
+}
+.selection-btn {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s;
+  font-size: 0.95rem;
+  backdrop-filter: blur(10px);
+}
+.selection-btn:hover {
+  background: rgba(255,255,255,0.3);
+  transform: translateY(-2px);
+}
+.selection-btn.danger {
+  background: rgba(239, 68, 68, 0.3);
+}
+.selection-btn.danger:hover {
+  background: rgba(239, 68, 68, 0.5);
+}
+
+/* Filter Bar */
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.filter-btn {
+  padding: 12px 22px;
+  border: 2px solid var(--border-color);
+  background: var(--bg-secondary);
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--text-secondary);
+  transition: all 0.3s;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.filter-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+.filter-btn.active {
+  background: var(--gradient-primary);
+  border-color: transparent;
+  color: white;
+  box-shadow: 0 8px 20px rgba(16,185,129,0.3);
+}
+
+/* Meal Grid */
+.meal-section {margin-top: 16px;}
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-title i {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.section-hint {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.meal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+.meal-card {
+  background: var(--bg-secondary);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 3px solid var(--border-color);
+  position: relative;
+  cursor: pointer;
+}
+.meal-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+.meal-card.selected {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(16,185,129,0.15), var(--shadow-lg);
+}
+.meal-card.selected .meal-select-badge {
+  opacity: 1;
+  transform: scale(1);
+}
+.meal-select-badge {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 40px; height: 40px;
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 5px 15px rgba(16,185,129,0.4);
+}
+.meal-card:hover .meal-select-badge {
+  opacity: 0.5;
+  transform: scale(0.8);
+}
+.meal-card.selected:hover .meal-select-badge {
+  opacity: 1;
+  transform: scale(1);
+}
+.meal-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+.meal-image img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.meal-card:hover .meal-image img {
+  transform: scale(1.15);
+}
+.meal-overlay {
+  position: absolute;
+  top: 16px; left: 16px;
+  background: rgba(0,0,0,0.85);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 1.1rem;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.meal-category-badge {
+  position: absolute;
+  bottom: 16px; left: 16px;
+  background: var(--gradient-secondary);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.meal-select-hint {
+  position: absolute;
+  bottom: 0;
+  left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.95));
+  padding: 60px 20px 20px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.meal-card:hover .meal-select-hint {
+  opacity: 1;
+}
+.meal-select-hint span {
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.meal-content {
+  padding: 24px;
+}
+.meal-header {
+  margin-bottom: 14px;
+}
+.meal-name {
+  font-weight: 800;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+.meal-meta {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 14px;
+}
+.meal-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+.meal-meta-item i {
+  color: var(--primary);
+  font-size: 1rem;
+}
+.meal-ingredients {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.ingredient-tag {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  padding: 6px 12px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+}
+
+/* Meal Detail Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fadeIn 0.3s ease;
+}
+.modal-overlay.show {
+  display: flex;
+}
+.modal {
+  background: var(--bg-secondary);
+  border-radius: 32px;
+  max-width: 520px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+.modal-image {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+.modal-content {
+  padding: 28px;
+}
+.modal-title {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  letter-spacing: -0.02em;
+}
+.modal-price {
+  background: var(--gradient-primary);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+.modal-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.modal-stat {
+  background: var(--bg-primary);
+  padding: 16px;
+  border-radius: 16px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+}
+.modal-stat-icon {
+  font-size: 1.4rem;
+  color: var(--primary);
+  margin-bottom: 6px;
+}
+.modal-stat-value {
+  font-weight: 800;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+.modal-stat-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.modal-section {
+  margin-bottom: 24px;
+}
+.modal-section-title {
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+}
+.modal-ingredients {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.modal-ingredient {
+  background: var(--gradient-primary);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.modal-ingredient-price {
+  opacity: 0.85;
+  font-size: 0.8rem;
+}
+.modal-actions {
+  display: flex;
+  gap: 14px;
+}
+.modal-btn {
+  flex: 1;
+  padding: 16px;
+  border-radius: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1rem;
+}
+.modal-btn.primary {
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+}
+.modal-btn.primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(16,185,129,0.4);
+}
+.modal-btn.secondary {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+}
+.modal-btn.secondary:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.modal-close {
+  position: absolute;
+  top: 20px; right: 20px;
+  width: 44px; height: 44px;
+  background: rgba(0,0,0,0.6);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+}
+.modal-close:hover {
+  background: var(--danger);
+  transform: rotate(90deg) scale(1.1);
+}
+
+/* Grocery Tab */
+.grocery-container {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 28px;
+}
+.grocery-list-card {
+  background: var(--bg-secondary);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+}
+
+/* Selected Meals Summary */
+.selected-meals-summary {
+  background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(52,211,153,0.08) 100%);
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 2px solid rgba(16,185,129,0.2);
+}
+.selected-meals-title {
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.05rem;
+}
+.selected-meals-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+.selected-meal-tag {
+  background: var(--gradient-primary);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(16,185,129,0.25);
+}
+
+.grocery-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 2px solid var(--border-color);
+}
+.grocery-title {
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.grocery-count {
+  background: var(--gradient-primary);
+  color: white;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+.grocery-category {
+  margin-bottom: 24px;
+}
+.grocery-category-title {
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+}
+.grocery-category-title i {
+  color: var(--primary);
+}
+.grocery-item {
+  display:flex;
+  justify-content:space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-color);
+  transition: all 0.3s;
+}
+.grocery-item:hover {
+  background: var(--bg-tertiary);
+  margin: 0 -28px;
+  padding-left: 28px;
+  padding-right: 28px;
+}
+.grocery-item:last-child { border-bottom: none; }
+.grocery-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.grocery-icon {
+  width: 46px; height: 46px;
+  background: var(--gradient-primary);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.1rem;
+}
+.grocery-details {
+  text-align: left;
+}
+.grocery-name {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+.grocery-qty {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 3px;
+}
+.grocery-price {
+  font-weight: 800;
+  color: var(--primary);
+  font-size: 1.2rem;
+}
+
+.summary-card {
+  background: var(--gradient-primary);
+  color: white;
+  padding: 32px;
+  border-radius: 24px;
+  box-shadow: 0 25px 50px rgba(16,185,129,0.35);
+  position: sticky;
+  top: 24px;
+}
+.summary-title {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.summary-amount {
+  font-size: 3.2rem;
+  font-weight: 900;
+  margin-bottom: 28px;
+  letter-spacing: -0.02em;
+}
+.summary-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.summary-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+}
+.summary-stat-label {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  font-weight: 500;
+}
+.summary-stat-value {
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+
+/* Budget Warning */
+.budget-warning {
+  background: linear-gradient(135deg, rgba(239,68,68,0.15) 0%, rgba(220,38,38,0.15) 100%);
+  border: 2px solid var(--danger);
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--danger);
+  font-weight: 700;
+}
+.budget-warning i {
+  font-size: 1.3rem;
+}
+.budget-ok {
+  background: linear-gradient(135deg, rgba(16,185,129,0.15) 0%, rgba(52,211,153,0.15) 100%);
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+/* Savings Tab */
+.savings-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+.savings-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+.savings-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 36px;
+}
+.stat-card {
+  background: var(--bg-secondary);
+  padding: 32px;
+  border-radius: 24px;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: all 0.4s;
+  border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transition: transform 0.4s;
+}
+.stat-card:hover::before {
+  transform: scaleX(1);
+}
+.stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+.stat-card.negative::before { background: var(--danger); }
+.stat-card.positive::before { background: var(--primary); }
+.stat-card.neutral::before { background: var(--info); }
+
+.stat-icon {
+  width: 70px; height: 70px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+  font-size: 1.7rem;
+}
+.stat-card.negative .stat-icon { background: rgba(239,68,68,0.1); color: var(--danger); }
+.stat-card.positive .stat-icon { background: rgba(16,185,129,0.1); color: var(--primary); }
+.stat-card.neutral .stat-icon { background: rgba(59,130,246,0.1); color: var(--info); }
+
+.stat-label {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.stat-value {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+.stat-change {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.stat-change.positive { color: var(--primary); }
+.stat-change.negative { color: var(--danger); }
+
+/* Chart */
+.chart-container {
+  background: var(--bg-secondary);
+  padding: 36px;
+  border-radius: 24px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  margin-top: 28px;
+}
+.chart-title {
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.comparison-bar {
+  margin-bottom: 28px;
+}
+.comparison-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+.comparison-track {
+  height: 48px;
+  background: var(--bg-tertiary);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.06);
+}
+.comparison-fill {
+  height: 100%;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 20px;
+  color: white;
+  font-weight: 800;
+  font-size: 1rem;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+.comparison-fill::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+  animation: shimmerBar 2.5s infinite;
+}
+@keyframes shimmerBar {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.fill-eatout { background: linear-gradient(135deg, var(--danger), var(--danger-dark)); }
+.fill-home { background: var(--gradient-primary); }
+
+.savings-highlight {
+  background: linear-gradient(135deg, rgba(16,185,129,0.12) 0%, rgba(52,211,153,0.12) 100%);
+  border: 3px solid var(--primary);
+  border-radius: 24px;
+  padding: 36px;
+  margin-top: 28px;
+  text-align: center;
+}
+.savings-amount {
+  font-size: 4rem;
+  font-weight: 900;
+  color: var(--primary);
+  margin-bottom: 10px;
+  letter-spacing: -0.03em;
+}
+.savings-text {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+.savings-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--gradient-primary);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 1.05rem;
+  box-shadow: 0 10px 30px rgba(16,185,129,0.35);
+}
+
+.hidden {display:none !important;}
+
+/* Notification */
+#notification {
+  position: fixed;
+  top: 28px;
+  right: 28px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: 22px 28px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+  font-weight: 600;
+  z-index: 9999;
+  opacity: 0;
+  transform: translateX(120%);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  border-left: 5px solid var(--primary);
+  max-width: 480px;
+  backdrop-filter: blur(10px);
+}
+#notification.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+#notification.error { border-left-color: var(--danger); }
+#notification.warning { border-left-color: var(--warning); }
+#notification-icon {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  background: var(--gradient-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+#notification.error #notification-icon { background: var(--gradient-danger, var(--danger)); }
+#notification.warning #notification-icon { background: var(--warning); }
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 100px 24px;
+  color: var(--text-secondary);
+}
+.empty-state-icon {
+  width: 140px; height: 140px;
+  background: var(--bg-secondary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 28px;
+  font-size: 3.5rem;
+  border: 3px dashed var(--border-color);
+}
+.empty-state h3 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  font-weight: 800;
+}
+.empty-state p {
+  max-width: 450px;
+  margin: 0 auto;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .grocery-container { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  body { padding: 16px; }
+  .login { padding: 36px 28px; }
+  .login h1 { font-size: 2.2rem; }
+  .meal-grid { grid-template-columns: 1fr; }
+  .tabs { padding: 0 20px; overflow-x: auto; }
+  .content { padding: 24px; }
+  .topbar { padding: 20px 24px; flex-direction: column; gap: 20px; align-items: stretch; }
+  .selection-summary { flex-direction: column; gap: 20px; text-align: center; }
+  .selection-info { flex-direction: column; gap: 20px; }
+  .modal-stats { grid-template-columns: 1fr; }
+  .planner-header { flex-direction: column; align-items: stretch; }
+  .budget-display { flex-direction: column; }
+  .filter-bar { justify-content: center; }
+}
+</style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+
+<!-- Background Shapes -->
+<div class="bg-shapes">
+  <div class="bg-shape"></div>
+  <div class="bg-shape"></div>
+  <div class="bg-shape"></div>
+</div>
+
+<!-- Floating Particles -->
+<div class="particles" id="particles"></div>
+
+<!-- Theme Toggle -->
+<button class="theme-toggle" onclick="toggleTheme()">
+  <i class="fas fa-sun" id="themeIcon"></i>
+  <span id="themeText">Dark</span>
+</button>
+
+<div class="container">
+
+<div id="notification" class="hidden">
+  <div id="notification-icon"><i class="fas fa-check"></i></div>
+  <div>
+    <div id="notification-title" style="font-weight: 800; margin-bottom: 4px;">Success</div>
+    <div id="notification-text" style="font-size: 0.95rem; color: var(--text-secondary);"></div>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div id="loginCard" class="card login">
+  <div class="brand">
+    <div class="brand-icon">🍽️</div>
+    <h1>BudgetSmart Pro</h1>
+    <p class="subtitle">Pick your meals, track your budget, save money</p>
+  </div>
+  
+  <div class="login-tabs">
+    <button id="loginTabBtn" class="active" onclick="showLogin()">
+      <i class="fas fa-sign-in-alt"></i> Sign In
+    </button>
+    <button id="createTabBtn" onclick="showCreate()">
+      <i class="fas fa-user-plus"></i> Create Account
+    </button>
+  </div>
+  
+  <div id="loginForm">
+    <div class="input-group">
+      <i class="fas fa-user"></i>
+      <input type="text" id="username" placeholder=" " autocomplete="username">
+      <label for="username">Username</label>
+    </div>
+    <div class="input-group">
+      <i class="fas fa-lock"></i>
+      <input type="password" id="password" placeholder=" " autocomplete="current-password">
+      <label for="password">Password</label>
+    </div>
+    <button class="btn-primary" onclick="login()">
+      <span>Sign In</span>
+      <i class="fas fa-arrow-right"></i>
+    </button>
+    
+    <div class="saved-accounts-title">
+      <i class="fas fa-history"></i> Quick Access
+    </div>
+    <div class="saved-accounts-grid" id="savedAccounts"></div>
+  </div>
+  
+  <div id="createForm" class="hidden">
+    <div class="input-group">
+      <i class="fas fa-user"></i>
+      <input type="text" id="newUsername" placeholder=" " autocomplete="username">
+      <label for="newUsername">Choose Username</label>
+    </div>
+    <div class="input-group">
+      <i class="fas fa-lock"></i>
+      <input type="password" id="newPassword" placeholder=" " autocomplete="new-password">
+      <label for="newPassword">Create Password</label>
+    </div>
+    <button class="btn-primary" onclick="createAccount()">
+      <span>Create Account</span>
+      <i class="fas fa-user-plus"></i>
+    </button>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="appCard" class="card hidden">
+  <div class="topbar">
+    <div class="user-info">
+      <div class="user-avatar">
+        <i class="fas fa-user"></i>
+      </div>
+      <div id="loggedUser">
+        <span class="user-greeting">Welcome back,</span>
+        <span id="userNameDisplay" style="color: var(--primary);">User</span>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <button class="icon-btn" onclick="toggleTheme()" title="Toggle Theme">
+        <i class="fas fa-moon" id="headerThemeIcon"></i>
+      </button>
+      <button class="icon-btn" onclick="logout()" title="Logout" style="color: var(--danger);">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
+    </div>
+  </div>
+  
+  <div class="tabs">
+    <button class="tab-btn active" onclick="openTab('planner',this)">
+      <i class="fas fa-utensils"></i> Pick Meals
+    </button>
+    <button class="tab-btn" onclick="openTab('grocery',this)">
+      <i class="fas fa-shopping-basket"></i> Groceries
+    </button>
+    <button class="tab-btn" onclick="openTab('savings',this)">
+      <i class="fas fa-piggy-bank"></i> Savings
+    </button>
+  </div>
+  
+  <div class="content">
+    <!-- PLANNER TAB -->
+    <div id="planner" class="tab-content active">
+      <!-- Budget Input -->
+      <div class="planner-header">
+        <div class="budget-display">
+          <div class="budget-input-group">
+            <i class="fas fa-peso-sign"></i>
+            <input type="number" id="budget" placeholder="0" min="0">
+            <span>Budget</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Selection Summary -->
+      <div id="selectionSummary" class="selection-summary hidden">
+        <div class="selection-info">
+          <div class="selection-stat">
+            <span class="selection-stat-value" id="selectedCount">0</span>
+            <span class="selection-stat-label">Meals Selected</span>
+          </div>
+          <div class="selection-stat">
+            <span class="selection-stat-value">₱<span id="totalCost">0</span></span>
+            <span class="selection-stat-label">Total Cost</span>
+          </div>
+          <div class="selection-stat">
+            <span class="selection-stat-value">₱<span id="remainingBudget">0</span></span>
+            <span class="selection-stat-label">Remaining</span>
+          </div>
+        </div>
+        <div class="selection-actions">
+          <button class="selection-btn danger" onclick="clearAllSelections()">
+            <i class="fas fa-trash"></i> Clear All
+          </button>
+        </div>
+      </div>
+      
+      <!-- Filter -->
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterMeals('all', this)">
+          <i class="fas fa-th-large"></i> All
+        </button>
+        <button class="filter-btn" onclick="filterMeals('Protein', this)">
+          <i class="fas fa-drumstick-bite"></i> Protein
+        </button>
+        <button class="filter-btn" onclick="filterMeals('Vegetable', this)">
+          <i class="fas fa-leaf"></i> Vegetable
+        </button>
+        <button class="filter-btn" onclick="filterMeals('Seafood', this)">
+          <i class="fas fa-fish"></i> Seafood
+        </button>
+        <button class="filter-btn" onclick="filterMeals('Breakfast', this)">
+          <i class="fas fa-egg"></i> Breakfast
+        </button>
+        <button class="filter-btn" onclick="filterMeals('Noodles', this)">
+          <i class="fas fa-utensils"></i> Noodles
+        </button>
+      </div>
+      
+      <!-- Meal Catalog -->
+      <div class="meal-section">
+        <div class="section-header">
+          <div class="section-title">
+            <i class="fas fa-utensils"></i> Choose Your Meals
+          </div>
+          <div class="section-hint">
+            <i class="fas fa-info-circle"></i> Click to select meals
+          </div>
+        </div>
+        <div class="meal-grid" id="mealCatalog"></div>
+      </div>
+    </div>
+    
+    <!-- GROCERY TAB -->
+    <div id="grocery" class="tab-content">
+      <div id="groceryEmpty" class="empty-state">
+        <div class="empty-state-icon">🛒</div>
+        <h3>No meals selected yet</h3>
+        <p>Go to "Pick Meals" tab and select the meals you want to cook. Your shopping list will be generated automatically.</p>
+      </div>
+      
+      <div id="groceryContainer" class="hidden grocery-container">
+        <div class="grocery-list-card">
+          <!-- Selected Meals Summary -->
+          <div class="selected-meals-summary">
+            <div class="selected-meals-title">
+              <i class="fas fa-utensils"></i> Your Selected Meals
+            </div>
+            <div class="selected-meals-list" id="selectedMealsList"></div>
+          </div>
+          
+          <div class="grocery-header">
+            <div class="grocery-title">
+              <i class="fas fa-clipboard-list"></i> Shopping List
+            </div>
+            <div class="grocery-count" id="groceryItemCount">0</div>
+          </div>
+          <div id="groceryList"></div>
+        </div>
+        
+        <div>
+          <div class="summary-card">
+            <div class="summary-title">Total Estimated Cost</div>
+            <div class="summary-amount">₱<span id="groceryCost">0</span></div>
+            <div class="summary-stats">
+              <div class="summary-stat">
+                <span class="summary-stat-label">Meals Selected</span>
+                <span class="summary-stat-value" id="selectedMealsCount">0</span>
+              </div>
+              <div class="summary-stat">
+                <span class="summary-stat-label">Total Servings</span>
+                <span class="summary-stat-value" id="totalServings">0</span>
+              </div>
+              <div class="summary-stat">
+                <span class="summary-stat-label">Total Items</span>
+                <span class="summary-stat-value" id="totalItems">0</span>
+              </div>
+              <div class="summary-stat">
+                <span class="summary-stat-label">Avg. per Meal</span>
+                <span class="summary-stat-value">₱<span id="avgCost">0</span></span>
+              </div>
+            </div>
+            <div id="budgetStatus"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- SAVINGS TAB -->
+    <div id="savings" class="tab-content">
+      <div id="savingsEmpty" class="empty-state">
+        <div class="empty-state-icon">💡</div>
+        <h3>Select meals to see savings</h3>
+        <p>Choose your meals from the "Pick Meals" tab to see how much you can save compared to eating out.</p>
+      </div>
+      
+      <div id="savingsContainer" class="hidden">
+        <div class="savings-header">
+          <h2 class="savings-title">💰 Cost Comparison Analysis</h2>
+          <p class="savings-subtitle">See how much you save by cooking at home vs. eating out</p>
+        </div>
+        
+        <div class="stats-grid">
+          <div class="stat-card negative">
+            <div class="stat-icon"><i class="fas fa-utensils"></i></div>
+            <div class="stat-label">Eating Out Cost</div>
+            <div class="stat-value">₱<span id="eatOut">0</span></div>
+            <div class="stat-change negative">
+              <i class="fas fa-receipt"></i> Restaurant prices
+            </div>
+          </div>
+          <div class="stat-card neutral">
+            <div class="stat-icon"><i class="fas fa-home"></i></div>
+            <div class="stat-label">Home Cooking</div>
+            <div class="stat-value">₱<span id="appCost">0</span></div>
+            <div class="stat-change">
+              <i class="fas fa-check"></i> Your selection
+            </div>
+          </div>
+          <div class="stat-card positive">
+            <div class="stat-icon"><i class="fas fa-piggy-bank"></i></div>
+            <div class="stat-label">Your Savings</div>
+            <div class="stat-value">₱<span id="savingsValue">0</span></div>
+            <div class="stat-change positive">
+              <i class="fas fa-arrow-down"></i> Money saved
+            </div>
+          </div>
+        </div>
+        
+        <div class="chart-container">
+          <div class="chart-title">
+            <i class="fas fa-chart-bar"></i> Visual Comparison
+          </div>
+          <div class="comparison-bar">
+            <div class="comparison-label">
+              <span>Eating Out (₱150/meal average)</span>
+              <span id="eatOutPercent">0%</span>
+            </div>
+            <div class="comparison-track">
+              <div class="comparison-fill fill-eatout" id="eatOutBar" style="width: 0%">₱<span id="eatOutBarValue">0</span></div>
+            </div>
+          </div>
+          <div class="comparison-bar">
+            <div class="comparison-label">
+              <span>Home Cooking (Your Selection)</span>
+              <span id="homePercent">0%</span>
+            </div>
+            <div class="comparison-track">
+              <div class="comparison-fill fill-home" id="homeBar" style="width: 0%">₱<span id="homeBarValue">0</span></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="savings-highlight">
+          <div class="savings-amount">₱<span id="monthlySavings">0</span></div>
+          <div class="savings-text">Estimated monthly savings if you stick to this plan</div>
+          <div class="savings-badge">
+            <i class="fas fa-trophy"></i> Save <span id="savingsPercent">0</span>% vs eating out
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Meal Detail Modal -->
+<div class="modal-overlay" id="mealModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">
+      <i class="fas fa-times"></i>
+    </button>
+    <img class="modal-image" id="modalImage" src="" alt="">
+    <div class="modal-content">
+      <div class="modal-title">
+        <span id="modalMealName">Meal Name</span>
+        <span class="modal-price">₱<span id="modalPrice">0</span></span>
+      </div>
+      
+      <div class="modal-stats">
+        <div class="modal-stat">
+          <div class="modal-stat-icon"><i class="fas fa-fire"></i></div>
+          <div class="modal-stat-value" id="modalCalories">0</div>
+          <div class="modal-stat-label">Calories</div>
+        </div>
+        <div class="modal-stat">
+          <div class="modal-stat-icon"><i class="fas fa-clock"></i></div>
+          <div class="modal-stat-value" id="modalTime">30</div>
+          <div class="modal-stat-label">Minutes</div>
+        </div>
+        <div class="modal-stat">
+          <div class="modal-stat-icon"><i class="fas fa-users"></i></div>
+          <div class="modal-stat-value" id="modalServings">2</div>
+          <div class="modal-stat-label">Servings</div>
+        </div>
+      </div>
+      
+      <div class="modal-section">
+        <div class="modal-section-title">
+          <i class="fas fa-carrot" style="color: var(--primary);"></i> Ingredients & Prices
+        </div>
+        <div class="modal-ingredients" id="modalIngredients"></div>
+      </div>
+      
+      <div class="modal-actions">
+        <button class="modal-btn secondary" onclick="closeModal()">
+          <i class="fas fa-times"></i> Close
+        </button>
+        <button class="modal-btn primary" id="modalSelectBtn" onclick="toggleMealFromModal()">
+          <i class="fas fa-plus"></i> <span id="modalSelectText">Add to List</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Theme Management
+function initTheme() {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  updateThemeIcon(savedTheme);
+}
+
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  updateThemeIcon(newTheme);
+}
+
+function updateThemeIcon(theme) {
+  const icon = document.getElementById('themeIcon');
+  const headerIcon = document.getElementById('headerThemeIcon');
+  const text = document.getElementById('themeText');
+  if(icon) icon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+  if(headerIcon) headerIcon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+  if(text) text.textContent = theme === 'light' ? 'Dark' : 'Light';
+}
+
+// Create floating particles
+function createParticles() {
+  const container = document.getElementById('particles');
+  for(let i = 0; i < 25; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.animationDelay = Math.random() * 25 + 's';
+    particle.style.animationDuration = (18 + Math.random() * 12) + 's';
+    container.appendChild(particle);
+  }
+}
+
+// ACCOUNTS
+let accounts = JSON.parse(localStorage.getItem("accounts") || "[]");
+if(!accounts.find(a=>a.username==="Gabo")){
+  accounts.push({username:"Gabo", password:"Gabondat"}); 
+  localStorage.setItem("accounts",JSON.stringify(accounts));
+}
+
+// Global State
+let selectedMeals = {}; // { mealId: meal }
+let currentModalMeal = null;
+let currentFilter = 'all';
+
+// Tabs
+function showLogin(){ 
+  loginForm.classList.remove("hidden"); 
+  createForm.classList.add("hidden"); 
+  loginTabBtn.classList.add("active"); 
+  createTabBtn.classList.remove("active"); 
+}
+function showCreate(){ 
+  loginForm.classList.add("hidden"); 
+  createForm.classList.remove("hidden"); 
+  loginTabBtn.classList.remove("active"); 
+  createTabBtn.classList.add("active"); 
+}
+
+// Display saved accounts
+function displayAccounts(){
+  const div=document.getElementById("savedAccounts"); 
+  div.innerHTML="";
+  if(accounts.length === 0){
+    div.innerHTML = '<p style="color: var(--text-muted); font-size: 0.95rem; grid-column: 1/-1; text-align: center; padding: 24px;">No saved accounts yet</p>';
+    return;
+  }
+  accounts.forEach((acc,index)=>{
+    const wrapper=document.createElement("div"); 
+    wrapper.className="saved-account";
+    wrapper.onclick = (e) => {
+      if(!e.target.closest('.delete-btn')) {
+        username.value=acc.username; 
+        password.value=acc.password; 
+        login();
+      }
+    };
+    
+    const avatar=document.createElement("div");
+    avatar.className="saved-account-avatar";
+    avatar.innerText=acc.username.charAt(0).toUpperCase();
+    
+    const info=document.createElement("div");
+    info.className="saved-account-info";
+    info.innerHTML=`<div class="saved-account-name">${acc.username}</div><div class="saved-account-action">Click to login</div>`;
+    
+    const delBtn=document.createElement("button"); 
+    delBtn.className="delete-btn"; 
+    delBtn.innerHTML='<i class="fas fa-times"></i>';
+    delBtn.onclick=(e)=>{
+      e.stopPropagation();
+      if(confirm(`Delete account "${acc.username}"?`)){
+        accounts.splice(index,1); 
+        localStorage.setItem("accounts",JSON.stringify(accounts)); 
+        displayAccounts();
+        showNotification("Account deleted successfully", "warning");
+      }
+    };
+    
+    wrapper.appendChild(avatar);
+    wrapper.appendChild(info);
+    wrapper.appendChild(delBtn); 
+    div.appendChild(wrapper);
+  });
+}
+displayAccounts();
+
+// Create account
+function createAccount(){ 
+  const u=newUsername.value.trim(), p=newPassword.value.trim();
+  if(!u||!p){
+    showNotification("Please fill in all fields", "error"); 
+    return;
+  } 
+  if(accounts.find(a=>a.username===u)){
+    showNotification("Username already exists", "error"); 
+    return;
+  }
+  accounts.push({username:u,password:p}); 
+  localStorage.setItem("accounts",JSON.stringify(accounts)); 
+  displayAccounts(); 
+  showLogin(); 
+  showNotification("Account created successfully! Please sign in.");
+  newUsername.value = "";
+  newPassword.value = "";
+}
+
+// Login
+function login(){ 
+  const u=username.value.trim(), p=password.value.trim(); 
+  const acc=accounts.find(a=>a.username===u && a.password===p);
+  if(acc){
+    loginCard.classList.add("hidden"); 
+    appCard.classList.remove("hidden"); 
+    document.getElementById('userNameDisplay').innerText = acc.username;
+    showNotification(`Welcome back, ${acc.username}! Start picking your meals.`, "success");
+    renderMealCatalog();
+  } else {
+    showNotification("Invalid username or password", "error");
+  }
+}
+
+function logout(){ 
+  appCard.classList.add("hidden"); 
+  loginCard.classList.remove("hidden"); 
+  password.value=""; 
+  selectedMeals = {};
+  resetDisplays();
+}
+
+function resetDisplays(){
+  document.getElementById('selectionSummary').classList.add('hidden');
+  document.getElementById('groceryEmpty').classList.remove('hidden');
+  document.getElementById('groceryContainer').classList.add('hidden');
+  document.getElementById('savingsEmpty').classList.remove('hidden');
+  document.getElementById('savingsContainer').classList.add('hidden');
+}
+
+function openTab(id,btn){
+  document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active")); 
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active")); 
+  document.getElementById(id).classList.add("active"); 
+  btn.classList.add("active");
+}
+
+// INGREDIENTS WITH ACCURATE PRICES (Philippine Peso)
+const ingredientPrices = {
+  "Chicken": 45, "Pork": 55, "Beef": 85, "Ground Pork": 50, "Fish": 60, "Beef Tapa": 75, "Bangus": 70,
+  "Papaya": 25, "Malunggay": 15, "Vegetables": 35, "Mixed Vegetables": 30, "Tomato": 12, "Onion": 10,
+  "Garlic": 8, "Ginger": 8, "Potato": 15, "Calamansi": 6, "Bell Pepper": 15, "Carrot": 12, "Cabbage": 25, "Spinach": 20,
+  "Rice": 12, "Soy Sauce": 5, "Vinegar": 5, "Cooking Oil": 8, "Coconut Milk": 30, "Fish Sauce": 5,
+  "Oyster Sauce": 10, "Noodles": 18, "Wrapper": 15,
+  "Egg": 10, "Butter": 15,
+  "Salt": 2, "Pepper": 3, "Sugar": 5
+};
+
+// Meal Database
+const meals = [
+  {
+    id: 1,
+    name: "Chicken Adobo",
+    ingredients: [
+      {name: "Chicken", qty: 1, unit: "250g"},
+      {name: "Soy Sauce", qty: 3, unit: "tbsp"},
+      {name: "Vinegar", qty: 2, unit: "tbsp"},
+      {name: "Garlic", qty: 1, unit: "head"},
+      {name: "Onion", qty: 1, unit: "piece"},
+      {name: "Rice", qty: 1, unit: "cup"}
+    ],
+    calories: 380,
+    prepTime: 35,
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1604579278540-bdb4672b9eb0?w=400",
+    category: "Protein"
+  },
+  {
+    id: 2,
+    name: "Tinolang Manok",
+    ingredients: [
+      {name: "Chicken", qty: 1, unit: "250g"},
+      {name: "Papaya", qty: 0.5, unit: "piece"},
+      {name: "Malunggay", qty: 1, unit: "bundle"},
+      {name: "Ginger", qty: 1, unit: "piece"},
+      {name: "Onion", qty: 1, unit: "piece"},
+      {name: "Rice", qty: 1, unit: "cup"}
+    ],
+    calories: 320,
+    prepTime: 40,
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400",
+    category: "Protein"
+  },
+  {
+    id: 3,
+    name: "Sinigang na Baboy",
+    ingredients: [
+      {name: "Pork", qty: 1, unit: "200g"},
+      {name: "Vegetables", qty: 1, unit: "mix"},
+      {name: "Tomato", qty: 2, unit: "pieces"},
+      {name: "Onion", qty: 1, unit: "piece"},
+      {name: "Fish Sauce", qty: 1, unit: "tbsp"},
+      {name: "Rice", qty: 1, unit: "cup"}
+    ],
+    calories: 420,
+    prepTime: 45,
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400",
+    category: "Protein"
+  },
+  {
+    id: 4,
+    name: "Tapsilog",
+    ingredients: [
+      {name: "Beef Tapa", qty: 1, unit: "150g"},
+      {name: "Egg", qty: 1, unit: "piece"},
+      {name: "Rice", qty: 1, unit: "cup"},
+      {name: "Garlic", qty: 0.5, unit: "head"},
+      {name: "Vinegar", qty: 1, unit: "tbsp"}
+    ],
+    calories: 580,
+    prepTime: 25,
+    servings: 1,
+    image: "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400",
+    category: "Breakfast"
+  },
+  {
+    id: 5,
+    name: "Pancit Canton",
+    ingredients: [
+      {name: "Noodles", qty: 1, unit: "pack"},
+      {name: "Vegetables", qty: 1, unit: "mix"},
+      {name: "Pork", qty: 0.5, unit: "100g"},
+      {name: "Soy Sauce", qty: 2, unit: "tbsp"},
+      {name: "Garlic", qty: 0.5, unit: "head"}
+    ],
+    calories: 350,
+    prepTime: 20,
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400",
+    category: "Noodles"
+  },
+  {
+    id: 6,
+    name: "Lumpiang Shanghai",
+    ingredients: [
+      {name: "Ground Pork", qty: 1, unit: "200g"},
+      {name: "Wrapper", qty: 1, unit: "pack"},
+      {name: "Onion", qty: 0.5, unit: "piece"},
+      {name: "Garlic", qty: 0.5, unit: "head"},
+      {name: "Carrot", qty: 1, unit: "piece"}
+    ],
+    calories: 380,
+    prepTime: 35,
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1626804475297-411d863b67ab?w=400",
+    category: "Protein"
+  },
+  {
+    id: 7,
+    name: "Ginisang Gulay",
+    ingredients: [
+      {name: "Mixed Vegetables", qty: 1, unit: "mix"},
+      {name: "Garlic", qty: 0.5, unit: "head"},
+      {name: "Onion", qty: 0.5, unit: "piece"},
+      {name: "Tomato", qty: 1, unit: "piece"},
+      {name: "Rice", qty: 1, unit: "cup"}
+    ],
+    calories: 220,
+    prepTime: 15,
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400",
+    category: "Vegetable"
+  },
+  {
+    id: 8,
+    name: "Beef Steak Tagalog",
+    ingredients: [
+      {name: "Beef", qty: 1, unit: "200g"},
+      {name: "Onion", qty: 1, unit: "piece"},
+      {name: "Soy Sauce", qty: 3, unit: "tbsp"},
+      {name: "Calamansi", qty: 3, unit: "pieces"},
+      {name: "Garlic", qty: 0.5, unit: "head"},
+      {name: "Rice", qty: 1, unit: "cup"}
+    ],
+    calories: 480,
+    prepTime: 40,
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=400",
+    category: "Protein"
+  },
+  {
+    id: 9,
+    name: "Bangus Sisig",
+    ingredients: [
+      {name: "Bangus", qty: 1, unit: "piece"},
+      {name: "Onion", qty: 1, unit: "piece"},
+      {name: "Garlic", qty: 0.5, unit: "head"},
+      {name: "Egg", qty: 1, unit: "piece"},
+      {name: "Calamansi", qty: 2, unit: "pieces"},
+      {name: "Rice", qty: 1, unit: "cup"}
+    ],
+    calories: 340,
+    prepTime: 30,
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400",
+    category: "Seafood"
+  },
+  {
+    id: 10,
+    name: "Pinakbet",
+    ingredients: [
+      {name: "Mixed Vegetables", qty: 1, unit: "mix"},
+      {name: "Pork", qty: 0.5, unit: "100g"},
+      {name: "Fish Sauce", qty: 2, unit: "tbsp"},
+      {name: "Garlic", qty: 0.5, unit: "head"},
+      {name: "Onion", qty: 0.5, unit: "piece"},
+      {name: "Tomato", qty: 1, unit: "piece"}
+    ],
+    calories: 250,
+    prepTime: 25,
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400",
+    category: "Vegetable"
+  },
+  {
+    id: 11,
+    name: "Chicken Tinola",
+    ingredients: [
+      {name: "Chicken", qty: 1, unit: "250g"},
+      {name: "Papaya", qty: 0.5, unit: "piece"},
+      {name: "Malunggay", qty: 1, unit: "bundle"},
+      {name: "Ginger", qty: 1, unit: "piece"},
+      {name: "Onion", qty: 1, unit: "piece"},
+      {name: "Rice", qty: 1, unit: "cup"}
+    ],
+    calories: 310,
+    prepTime: 35,
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400",
+    category: "Protein"
+  },
+  {
+    id: 12,
+    name: "Pork Menudo",
+    ingredients: [
+      {name: "Pork", qty: 1, unit: "200g"},
+      {name: "Potato", qty: 1, unit: "piece"},
+      {name: "Carrot", qty: 1, unit: "piece"},
+      {name: "Tomato", qty: 1, unit: "piece"},
+      {name: "Garlic", qty: 0.5, unit: "head"},
+      {name: "Rice", qty: 1, unit: "cup"}
+    ],
+    calories: 400,
+    prepTime: 45,
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400",
+    category: "Protein"
+  }
+];
+
+// Calculate accurate meal cost
+function calculateMealCost(meal) {
+  let totalCost = 0;
+  meal.ingredients.forEach(ing => {
+    const price = ingredientPrices[ing.name] || 10;
+    totalCost += price * ing.qty;
+  });
+  return Math.round(totalCost);
+}
+
+// Notification
+function showNotification(message, type = "success"){
+  const notif = document.getElementById("notification");
+  const icon = document.getElementById("notification-icon");
+  const title = document.getElementById("notification-title");
+  const text = document.getElementById("notification-text");
+  
+  text.innerText = message;
+  
+  const icons = { success: 'fa-check', error: 'fa-exclamation', warning: 'fa-exclamation-triangle' };
+  const titles = { success: 'Success', error: 'Error', warning: 'Warning' };
+  
+  icon.innerHTML = `<i class="fas ${icons[type]}"></i>`;
+  title.innerText = titles[type];
+  
+  notif.classList.remove("hidden", "error", "warning");
+  if(type !== "success") notif.classList.add(type);
+  
+  void notif.offsetWidth;
+  notif.classList.add("show");
+  
+  setTimeout(() => { 
+    notif.classList.remove("show"); 
+    setTimeout(() => notif.classList.add("hidden"), 300);
+  }, 4000);
+}
+
+// Render meal catalog
+function renderMealCatalog() {
+  const catalogDiv = document.getElementById("mealCatalog");
+  catalogDiv.innerHTML = "";
+  
+  const filteredMeals = currentFilter === 'all' 
+    ? meals 
+    : meals.filter(m => m.category === currentFilter);
+  
+  filteredMeals.forEach(meal => {
+    const cost = calculateMealCost(meal);
+    const isSelected = selectedMeals[meal.id];
+    
+    const mealEl = document.createElement('div');
+    mealEl.className = `meal-card ${isSelected ? 'selected' : ''}`;
+    mealEl.dataset.mealId = meal.id;
+    
+    mealEl.innerHTML = `
+      <div class="meal-select-badge"><i class="fas fa-check"></i></div>
+      <div class="meal-image">
+        <img src="${meal.image}" alt="${meal.name}" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400'">
+        <div class="meal-overlay"><i class="fas fa-peso-sign"></i> ${cost}</div>
+        <div class="meal-category-badge">${meal.category}</div>
+        <div class="meal-select-hint">
+          <span><i class="fas fa-${isSelected ? 'minus' : 'plus'}-circle"></i> Click to ${isSelected ? 'remove' : 'add'}</span>
+        </div>
+      </div>
+      <div class="meal-content">
+        <div class="meal-header">
+          <div class="meal-name">${meal.name}</div>
+        </div>
+        <div class="meal-meta">
+          <div class="meal-meta-item">
+            <i class="fas fa-fire"></i> ${meal.calories} cal
+          </div>
+          <div class="meal-meta-item">
+            <i class="fas fa-clock"></i> ${meal.prepTime} min
+          </div>
+          <div class="meal-meta-item">
+            <i class="fas fa-users"></i> ${meal.servings} svgs
+          </div>
+        </div>
+        <div class="meal-ingredients">
+          ${meal.ingredients.slice(0, 3).map(ing => `<span class="ingredient-tag">${ing.name}</span>`).join('')}
+          ${meal.ingredients.length > 3 ? `<span class="ingredient-tag">+${meal.ingredients.length - 3}</span>` : ''}
+        </div>
+      </div>
+    `;
+    
+    mealEl.addEventListener('click', () => toggleMealSelection(meal));
+    catalogDiv.appendChild(mealEl);
+  });
+}
+
+// Filter meals
+function filterMeals(category, btn) {
+  currentFilter = category;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderMealCatalog();
+}
+
+// Toggle meal selection
+function toggleMealSelection(meal) {
+  const cost = calculateMealCost(meal);
+  
+  if (selectedMeals[meal.id]) {
+    delete selectedMeals[meal.id];
+    showNotification(`${meal.name} removed from your list`, "warning");
+  } else {
+    selectedMeals[meal.id] = meal;
+    showNotification(`${meal.name} added to your list (₱${cost})`);
+  }
+  
+  updateAllDisplays();
+}
+
+// Clear all selections
+function clearAllSelections() {
+  if (Object.keys(selectedMeals).length === 0) return;
+  
+  if (confirm('Are you sure you want to clear all selected meals?')) {
+    selectedMeals = {};
+    updateAllDisplays();
+    showNotification("All meals cleared", "warning");
+  }
+}
+
+// Update all displays
+function updateAllDisplays() {
+  renderMealCatalog();
+  updateSelectionSummary();
+  calculateGroceries();
+  calculateSavings();
+  
+  const hasSelections = Object.keys(selectedMeals).length > 0;
+  
+  document.getElementById('selectionSummary').classList.toggle('hidden', !hasSelections);
+  document.getElementById('groceryEmpty').classList.toggle('hidden', hasSelections);
+  document.getElementById('groceryContainer').classList.toggle('hidden', !hasSelections);
+  document.getElementById('savingsEmpty').classList.toggle('hidden', hasSelections);
+  document.getElementById('savingsContainer').classList.toggle('hidden', !hasSelections);
+}
+
+// Update selection summary
+function updateSelectionSummary() {
+  const budgetValue = Number(document.getElementById('budget').value) || 0;
+  let totalMeals = Object.keys(selectedMeals).length;
+  let totalCost = 0;
+  
+  Object.values(selectedMeals).forEach(meal => {
+    totalCost += calculateMealCost(meal);
+  });
+  
+  const remaining = budgetValue - totalCost;
+  
+  document.getElementById('selectedCount').textContent = totalMeals;
+  document.getElementById('totalCost').textContent = totalCost.toLocaleString();
+  document.getElementById('remainingBudget').textContent = remaining.toLocaleString();
+  
+  const remainingEl = document.getElementById('remainingBudget').parentElement;
+  if (budgetValue > 0) {
+    remainingEl.style.color = remaining < 0 ? '#ef4444' : '#10b981';
+  } else {
+    remainingEl.style.color = '';
+  }
+}
+
+// Calculate groceries from selected meals
+function calculateGroceries() {
+  const budgetValue = Number(document.getElementById('budget').value) || 0;
+  
+  const ingredientMap = {};
+  let totalServings = 0;
+  let totalCost = 0;
+  
+  Object.values(selectedMeals).forEach(meal => {
+    totalServings += meal.servings;
+    totalCost += calculateMealCost(meal);
+    
+    meal.ingredients.forEach(ing => {
+      const key = ing.name;
+      if (!ingredientMap[key]) {
+        ingredientMap[key] = {
+          name: ing.name,
+          totalQty: 0,
+          unit: ing.unit,
+          price: ingredientPrices[ing.name] || 10,
+          meals: []
+        };
+      }
+      ingredientMap[key].totalQty += ing.qty;
+      ingredientMap[key].meals.push(meal.name);
+    });
+  });
+
+  const selectedMealsListDiv = document.getElementById("selectedMealsList");
+  selectedMealsListDiv.innerHTML = Object.values(selectedMeals).map(meal => 
+    `<span class="selected-meal-tag">${meal.name}</span>`
+  ).join('');
+  
+  const groceryListDiv = document.getElementById("groceryList");
+  groceryListDiv.innerHTML = "";
+  
+  const categories = {
+    'Proteins': ['Chicken', 'Pork', 'Beef', 'Ground Pork', 'Fish', 'Bangus', 'Beef Tapa'],
+    'Vegetables': ['Papaya', 'Malunggay', 'Vegetables', 'Mixed Vegetables', 'Tomato', 'Onion', 'Garlic', 'Ginger', 'Potato', 'Calamansi', 'Bell Pepper', 'Carrot', 'Cabbage', 'Spinach'],
+    'Pantry': ['Rice', 'Soy Sauce', 'Vinegar', 'Cooking Oil', 'Coconut Milk', 'Fish Sauce', 'Oyster Sauce', 'Noodles', 'Wrapper', 'Salt', 'Pepper', 'Sugar'],
+    'Dairy & Eggs': ['Egg', 'Butter']
+  };
+  
+  const getCategory = (ingName) => {
+    for (const [cat, items] of Object.entries(categories)) {
+      if (items.includes(ingName)) return cat;
+    }
+    return 'Other';
+  };
+  
+  const categorized = {};
+  Object.values(ingredientMap).forEach(item => {
+    const cat = getCategory(item.name);
+    if (!categorized[cat]) categorized[cat] = [];
+    categorized[cat].push(item);
+  });
+  
+  let totalGroceryCost = 0;
+  let itemCount = 0;
+  
+  const icons = {
+    "Chicken": "fa-drumstick-bite", "Pork": "fa-bacon", "Beef": "fa-drumstick-bite",
+    "Fish": "fa-fish", "Bangus": "fa-fish", "Rice": "fa-seedling", "Egg": "fa-egg",
+    "Garlic": "fa-seedling", "Onion": "fa-seedling", "Tomato": "fa-seedling",
+    "Vegetables": "fa-leaf", "Mixed Vegetables": "fa-leaf", "Papaya": "fa-apple-alt",
+    "Noodles": "fa-utensils", "Wrapper": "fa-box", "default": "fa-shopping-basket"
+  };
+  
+  Object.entries(categorized).forEach(([category, items]) => {
+    const categoryDiv = document.createElement('div');
+    categoryDiv.className = 'grocery-category';
+    categoryDiv.innerHTML = `<div class="grocery-category-title"><i class="fas fa-folder"></i> ${category}</div>`;
+    
+    items.sort((a, b) => a.name.localeCompare(b.name)).forEach(item => {
+      const subtotal = Math.round(item.price * item.totalQty);
+      totalGroceryCost += subtotal;
+      itemCount += Math.ceil(item.totalQty);
+      
+      const iconClass = icons[item.name] || icons.default;
+      
+      const itemEl = document.createElement('div');
+      itemEl.className = 'grocery-item';
+      itemEl.innerHTML = `
+        <div class="grocery-info">
+          <div class="grocery-icon"><i class="fas ${iconClass}"></i></div>
+          <div class="grocery-details">
+            <div class="grocery-name">${item.name}</div>
+            <div class="grocery-qty">${Math.ceil(item.totalQty)} × ₱${item.price} each</div>
+          </div>
+        </div>
+        <div class="grocery-price">₱${subtotal}</div>
+      `;
+      categoryDiv.appendChild(itemEl);
+    });
+    
+    groceryListDiv.appendChild(categoryDiv);
+  });
+
+  document.getElementById("groceryCost").innerText = totalGroceryCost.toLocaleString();
+  document.getElementById("groceryItemCount").innerText = Object.keys(ingredientMap).length;
+  document.getElementById("totalItems").innerText = itemCount;
+  document.getElementById("selectedMealsCount").innerText = Object.keys(selectedMeals).length;
+  document.getElementById("totalServings").innerText = totalServings;
+  document.getElementById("avgCost").innerText = Object.keys(selectedMeals).length > 0 ? Math.round(totalGroceryCost / Object.keys(selectedMeals).length) : 0;
+  
+  const budgetStatus = document.getElementById("budgetStatus");
+  const remaining = budgetValue - totalGroceryCost;
+  
+  if (budgetValue > 0) {
+    if (remaining < 0) {
+      budgetStatus.innerHTML = `<div class="budget-warning"><i class="fas fa-exclamation-triangle"></i><span>Over budget by ₱${Math.abs(remaining).toLocaleString()}</span></div>`;
+    } else {
+      budgetStatus.innerHTML = `<div class="budget-warning budget-ok"><i class="fas fa-check-circle"></i><span>Within budget! ₱${remaining.toLocaleString()} remaining</span></div>`;
+    }
+  } else {
+    budgetStatus.innerHTML = '';
+  }
+}
+
+// Calculate savings
+function calculateSavings() {
+  const totalMeals = Object.keys(selectedMeals).length;
+  let totalCost = 0;
+  
+  Object.values(selectedMeals).forEach(meal => {
+    totalCost += calculateMealCost(meal);
+  });
+  
+  const eatOutCostPerMeal = 150;
+  const eatOutCost = totalMeals * eatOutCostPerMeal;
+  const savings = eatOutCost - totalCost;
+  
+  document.getElementById("eatOut").innerText = eatOutCost.toLocaleString();
+  document.getElementById("appCost").innerText = totalCost.toLocaleString();
+  document.getElementById("savingsValue").innerText = savings.toLocaleString();
+  
+  const savingsPercent = eatOutCost > 0 ? Math.round((savings / eatOutCost) * 100) : 0;
+  document.getElementById("savingsPercent").innerText = savingsPercent;
+  document.getElementById("monthlySavings").innerText = (savings * 4).toLocaleString();
+  
+  setTimeout(() => {
+    const maxVal = Math.max(eatOutCost, totalCost, 1);
+    const eatOutWidth = (eatOutCost / maxVal) * 100;
+    const homeWidth = (totalCost / maxVal) * 100;
+    
+    document.getElementById('eatOutBar').style.width = eatOutWidth + '%';
+    document.getElementById('eatOutBarValue').innerText = eatOutCost.toLocaleString();
+    document.getElementById('homeBar').style.width = homeWidth + '%';
+    document.getElementById('homeBarValue').innerText = totalCost.toLocaleString();
+    
+    document.getElementById('eatOutPercent').innerText = '100%';
+    document.getElementById('homePercent').innerText = eatOutCost > 0 ? Math.round((totalCost/eatOutCost)*100) + '%' : '0%';
+  }, 100);
+}
+
+// Open meal detail modal
+function openMealModal(meal) {
+  currentModalMeal = meal;
+  const cost = calculateMealCost(meal);
+  const isSelected = selectedMeals[meal.id];
+  
+  document.getElementById('modalImage').src = meal.image;
+  document.getElementById('modalMealName').textContent = meal.name;
+  document.getElementById('modalPrice').textContent = cost;
+  document.getElementById('modalCalories').textContent = meal.calories;
+  document.getElementById('modalTime').textContent = meal.prepTime;
+  document.getElementById('modalServings').textContent = meal.servings;
+  
+  const ingredientsDiv = document.getElementById('modalIngredients');
+  ingredientsDiv.innerHTML = meal.ingredients.map(ing => {
+    const price = ingredientPrices[ing.name] || 10;
+    return `<span class="modal-ingredient">${ing.name} <span class="modal-ingredient-price">₱${price}</span></span>`;
+  }).join('');
+  
+  document.getElementById('modalSelectText').textContent = isSelected ? 'Remove from List' : 'Add to List';
+  document.getElementById('modalSelectBtn').innerHTML = isSelected 
+    ? '<i class="fas fa-minus"></i> <span>Remove from List</span>'
+    : '<i class="fas fa-plus"></i> <span>Add to List</span>';
+  
+  document.getElementById('mealModal').classList.add('show');
+}
+
+// Close modal
+function closeModal() {
+  document.getElementById('mealModal').classList.remove('show');
+  currentModalMeal = null;
+}
+
+// Toggle meal from modal
+function toggleMealFromModal() {
+  if (!currentModalMeal) return;
+  
+  if (selectedMeals[currentModalMeal.id]) {
+    delete selectedMeals[currentModalMeal.id];
+    showNotification(`${currentModalMeal.name} removed from your list`, "warning");
+  } else {
+    selectedMeals[currentModalMeal.id] = currentModalMeal;
+    showNotification(`${currentModalMeal.name} added to your list`);
+  }
+  
+  updateAllDisplays();
+  closeModal();
+}
+
+// Budget input listener
+document.getElementById('budget').addEventListener('input', updateSelectionSummary);
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  createParticles();
+  
+  document.getElementById('mealModal').addEventListener('click', (e) => {
+    if (e.target.id === 'mealModal') closeModal();
+  });
+  
+  ['username', 'password', 'newUsername', 'newPassword'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) {
+      el.addEventListener('keypress', (e) => {
+        if(e.key === 'Enter') {
+          if(id === 'newPassword') createAccount();
+          else if(id === 'password') login();
+          else if(id === 'newUsername') document.getElementById('newPassword').focus();
+        }
+      });
+    }
+  });
+});
+</script>
+</body>
+</html>
