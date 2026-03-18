@@ -1,58 +1,2697 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BudgetSmart Meals Pro</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-:root{--primary:#10b981;--primary-dark:#059669;--secondary:#8b5cf6;--danger:#ef4444;--accent:#f472b6;--info:#3b82f6;--bg-primary:#f8fafc;--bg-secondary:#ffffff;--bg-tertiary:#f1f5f9;--text-primary:#0f172a;--text-secondary:#64748b;--border-color:#e2e8f0;--shadow:0 25px 50px -12px rgba(0,0,0,0.15);--gradient-primary:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);--gradient-secondary:linear-gradient(135deg,var(--secondary) 0%,#7c3aed 100%);--gradient-bg:linear-gradient(135deg,#6366f1 0%,#8b5cf6 33%,#d946ef 66%,#f472b6 100%)}[data-theme="dark"]{--bg-primary:#0f172a;--bg-secondary:#1e293b;--bg-tertiary:#334155;--text-primary:#f8fafc;--text-secondary:#94a3b8;--border-color:#334155}*{margin:0;padding:0;box-sizing:border-box;transition:background-color .3s,color .3s}body{font-family:'Plus Jakarta Sans',sans-serif;min-height:100vh;background:var(--gradient-bg);background-size:400% 400%;animation:gradientShift 15s ease infinite;display:flex;justify-content:center;align-items:center;padding:24px;color:var(--text-primary)}@keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}.container{width:100%;max-width:1280px}.card{background:rgba(255,255,255,0.92);border-radius:32px;box-shadow:var(--shadow);overflow:hidden;backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.25)}[data-theme="dark"] .card{background:rgba(30,41,59,0.92)}.login{padding:56px;text-align:center}.brand{margin-bottom:40px}.brand-icon{width:100px;height:100px;background:var(--gradient-primary);border-radius:28px;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:3rem;box-shadow:0 25px 50px rgba(16,185,129,0.35);animation:pulse 2.5s ease-in-out infinite}@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}.login h1{font-size:2.8rem;font-weight:900;background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px}.subtitle{color:var(--text-secondary);margin-bottom:40px;font-size:1.15rem;font-weight:500}.login-tabs{display:flex;gap:12px;margin-bottom:36px;background:var(--bg-primary);padding:8px;border-radius:20px;border:1px solid var(--border-color)}.login-tabs button{flex:1;padding:16px;border:none;cursor:pointer;background:transparent;border-radius:14px;font-weight:700;color:var(--text-secondary);font-size:1rem}.login-tabs button.active{background:var(--bg-secondary);color:var(--primary);box-shadow:0 4px 6px -1px rgba(0,0,0,0.05)}.input-group{position:relative;margin-bottom:20px;text-align:left}.input-group i{position:absolute;left:20px;top:50%;transform:translateY(-50%);color:var(--text-secondary);font-size:1.1rem}.input-group input{width:100%;padding:18px 18px 18px 52px;border-radius:18px;border:2px solid var(--border-color);font-size:1rem;background:var(--bg-secondary);color:var(--text-primary);font-weight:500}.input-group input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 5px rgba(16,185,129,0.12)}.input-group label{position:absolute;left:52px;top:50%;transform:translateY(-50%);color:var(--text-secondary);pointer-events:none;transition:all .3s;background:var(--bg-secondary);padding:0 6px}.input-group input:focus+label,.input-group input:not(:placeholder-shown)+label{top:0;font-size:.8rem;color:var(--primary);font-weight:700}.btn-primary{width:100%;padding:20px;background:var(--gradient-primary);color:white;border:none;border-radius:18px;cursor:pointer;font-weight:800;font-size:1.15rem;box-shadow:0 15px 35px rgba(16,185,129,0.35);display:flex;align-items:center;justify-content:center;gap:12px}.btn-primary:hover{transform:translateY(-4px);box-shadow:0 20px 45px rgba(16,185,129,0.45)}.saved-accounts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px;margin-top:18px}.saved-account{display:flex;align-items:center;gap:10px;padding:14px;background:var(--bg-primary);border-radius:16px;border:2px solid var(--border-color);cursor:pointer;transition:all .3s}.saved-account:hover{background:var(--bg-secondary);transform:translateY(-3px);border-color:var(--primary)}.saved-account-avatar{width:40px;height:40px;background:var(--gradient-primary);border-radius:12px;display:flex;align-items:center;justify-content:center;color:white;font-weight:800}.delete-btn{background:transparent;color:var(--danger);border:none;width:34px;height:34px;border-radius:10px;cursor:pointer}.delete-btn:hover{background:rgba(239,68,68,0.1)}.hidden{display:none!important}.topbar{display:flex;justify-content:space-between;align-items:center;padding:28px 36px;background:var(--bg-primary);border-bottom:1px solid var(--border-color)}.user-info{display:flex;align-items:center;gap:16px}.user-avatar{width:56px;height:56px;background:var(--gradient-primary);border-radius:18px;display:flex;align-items:center;justify-content:center;color:white;font-size:1.6rem;box-shadow:0 12px 28px rgba(16,185,129,0.35)}#loggedUser{font-weight:800;font-size:1.4rem;display:flex;flex-direction:column}.user-greeting{font-size:.9rem;color:var(--text-secondary);font-weight:500}.topbar-actions{display:flex;gap:14px}.icon-btn{width:50px;height:50px;border-radius:16px;border:2px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.2rem;transition:all .3s}.icon-btn:hover{background:var(--primary);color:white;border-color:var(--primary);transform:translateY(-3px)}.tabs{display:flex;padding:0 36px;gap:8px;background:var(--bg-primary);border-bottom:1px solid var(--border-color)}.tab-btn{flex:1;padding:20px;border:none;cursor:pointer;background:transparent;font-weight:700;color:var(--text-secondary);border-bottom:4px solid transparent;margin-bottom:-1px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:1rem}.tab-btn.active{color:var(--primary);border-bottom-color:var(--primary);background:var(--bg-secondary)}.content{padding:36px;min-height:550px;background:var(--bg-primary)}.tab-content{display:none;animation:fadeIn .5s ease}.tab-content.active{display:block}@keyframes fadeIn{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}.planner-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:20px}.budget-input-group{display:flex;align-items:center;gap:14px;background:var(--bg-secondary);padding:16px 24px;border-radius:20px;border:2px solid var(--border-color)}.budget-input-group i{color:var(--primary);font-size:1.5rem}.budget-input-group input{border:none;background:transparent;font-size:1.8rem;font-weight:800;width:140px;color:var(--text-primary)}.budget-input-group input:focus{outline:none}.selection-summary{background:var(--gradient-secondary);border-radius:24px;padding:24px 32px;margin-bottom:28px;display:flex;justify-content:space-between;align-items:center;color:white;box-shadow:0 20px 50px rgba(139,92,246,0.35)}.selection-info{display:flex;align-items:center;gap:40px}.selection-stat-value{font-size:2rem;font-weight:900}.selection-btn{background:rgba(255,255,255,0.2);border:none;color:white;padding:14px 28px;border-radius:14px;cursor:pointer;font-weight:700;display:flex;align-items:center;gap:10px}.filter-bar{display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap}.filter-btn{padding:12px 22px;border:2px solid var(--border-color);background:var(--bg-secondary);border-radius:50px;cursor:pointer;font-weight:700;color:var(--text-secondary);font-size:.9rem;display:flex;align-items:center;gap:8px}.filter-btn.active{background:var(--gradient-primary);border-color:transparent;color:white}.meal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}.meal-card{background:var(--bg-secondary);border-radius:24px;overflow:hidden;box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);transition:all .4s;border:3px solid var(--border-color);position:relative;cursor:pointer}.meal-card:hover{transform:translateY(-10px) scale(1.02);box-shadow:var(--shadow)}.meal-card.selected{border-color:var(--primary);box-shadow:0 0 0 4px rgba(16,185,129,0.15)}.meal-select-badge{position:absolute;top:16px;right:16px;width:40px;height:40px;background:var(--gradient-primary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:1.2rem;opacity:0;transform:scale(0.5);transition:all .3s;z-index:5}.meal-card.selected .meal-select-badge{opacity:1;transform:scale(1)}.meal-image{position:relative;height:200px;overflow:hidden}.meal-image img{width:100%;height:100%;object-fit:cover;transition:transform .6s}.meal-card:hover .meal-image img{transform:scale(1.15)}.meal-overlay{position:absolute;top:16px;left:16px;background:rgba(0,0,0,0.85);color:white;padding:10px 18px;border-radius:50px;font-weight:800;font-size:1.1rem}.servings-badge{position:absolute;bottom:16px;right:16px;background:linear-gradient(135deg,var(--accent),#ec4899);color:white;padding:8px 16px;border-radius:50px;font-weight:800;font-size:.9rem;display:flex;align-items:center;gap:8px;box-shadow:0 8px 20px rgba(244,114,182,0.4)}.servings-badge i{font-size:.8rem}.meal-category-badge{position:absolute;bottom:16px;left:16px;background:var(--gradient-secondary);color:white;padding:6px 14px;border-radius:50px;font-size:.8rem;font-weight:700;text-transform:uppercase}.meal-content{padding:24px}.meal-name{font-weight:800;color:var(--text-primary);font-size:1.25rem;margin-bottom:14px}.meal-meta{display:flex;gap:20px;margin-bottom:14px}.meal-meta-item{display:flex;align-items:center;gap:8px;font-size:.9rem;color:var(--text-secondary);font-weight:500}.meal-meta-item i{color:var(--primary)}.ingredient-tag{background:var(--bg-tertiary);color:var(--text-secondary);padding:6px 12px;border-radius:50px;font-size:.8rem;font-weight:600;border:1px solid var(--border-color)}.grocery-container{display:grid;grid-template-columns:1fr 400px;gap:28px}.grocery-list-card{background:var(--bg-secondary);border-radius:24px;padding:28px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);border:1px solid var(--border-color)}.selected-meals-summary{background:linear-gradient(135deg,rgba(16,185,129,0.08) 0%,rgba(52,211,153,0.08) 100%);border-radius:20px;padding:24px;margin-bottom:24px;border:2px solid rgba(16,185,129,0.2)}.selected-meals-title{font-weight:800;color:var(--text-primary);margin-bottom:14px;display:flex;align-items:center;gap:10px;font-size:1.05rem}.selected-meals-list{display:flex;flex-wrap:wrap;gap:10px;max-height:200px;overflow-y:auto}.selected-meal-tag{background:var(--gradient-primary);color:white;padding:10px 18px;border-radius:50px;font-size:.95rem;font-weight:700;display:flex;align-items:center;gap:10px;cursor:pointer;transition:all .3s;border:2px solid transparent;box-shadow:0 4px 12px rgba(16,185,129,0.25)}.selected-meal-tag:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 8px 20px rgba(16,185,129,0.4);border-color:rgba(255,255,255,0.5)}.selected-meal-tag .servings-hint{background:rgba(255,255,255,0.25);padding:2px 8px;border-radius:12px;font-size:.75rem}.grocery-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;padding-bottom:18px;border-bottom:2px solid var(--border-color)}.grocery-title{font-weight:800;font-size:1.3rem;color:var(--text-primary);display:flex;align-items:center;gap:12px}.grocery-count{background:var(--gradient-primary);color:white;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:800}.grocery-category{margin-bottom:24px}.grocery-category-title{font-weight:800;color:var(--text-primary);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border-color);display:flex;align-items:center;gap:10px}.grocery-item{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--border-color)}.grocery-item:hover{background:var(--bg-tertiary);margin:0 -28px;padding-left:28px;padding-right:28px}.grocery-info{display:flex;align-items:center;gap:14px}.grocery-icon{width:46px;height:46px;background:var(--gradient-primary);border-radius:14px;display:flex;align-items:center;justify-content:center;color:white;font-size:1.1rem}.grocery-name{font-weight:700;color:var(--text-primary);font-size:1rem}.grocery-qty{font-size:.85rem;color:var(--text-secondary);margin-top:3px}.grocery-price{font-weight:800;color:var(--primary);font-size:1.2rem}.summary-card{background:var(--gradient-primary);color:white;padding:32px;border-radius:24px;box-shadow:0 25px 50px rgba(16,185,129,0.35);position:sticky;top:24px}.summary-amount{font-size:3.2rem;font-weight:900;margin-bottom:28px}.summary-stat{display:flex;justify-content:space-between;align-items:center;padding:16px;background:rgba(255,255,255,0.15);border-radius:16px;margin-bottom:14px}.summary-stat-label{font-size:.95rem;opacity:.9}.summary-stat-value{font-weight:800;font-size:1.2rem}.budget-warning{background:rgba(239,68,68,0.15);border:2px solid var(--danger);border-radius:16px;padding:16px 20px;margin-top:20px;display:flex;align-items:center;gap:14px;color:var(--danger);font-weight:700}.budget-ok{background:rgba(16,185,129,0.15);border-color:var(--primary);color:var(--primary)}.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:36px}.stat-card{background:var(--bg-secondary);padding:32px;border-radius:24px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);text-align:center;border:1px solid var(--border-color);transition:all .4s}.stat-card:hover{transform:translateY(-8px);box-shadow:var(--shadow)}.stat-icon{width:70px;height:70px;border-radius:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:1.7rem;background:rgba(16,185,129,0.1);color:var(--primary)}.stat-value{font-size:2.2rem;font-weight:900;color:var(--text-primary);margin-bottom:6px}.stat-change{font-size:.9rem;font-weight:700;color:var(--primary)}.chart-container{background:var(--bg-secondary);padding:36px;border-radius:24px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);border:1px solid var(--border-color);margin-top:28px}.chart-title{font-weight:800;font-size:1.3rem;color:var(--text-primary);margin-bottom:28px;display:flex;align-items:center;gap:12px}.comparison-bar{margin-bottom:28px}.comparison-label{display:flex;justify-content:space-between;margin-bottom:12px;font-weight:700;color:var(--text-primary)}.comparison-track{height:48px;background:var(--bg-tertiary);border-radius:16px;overflow:hidden}.comparison-fill{height:100%;border-radius:16px;display:flex;align-items:center;justify-content:flex-end;padding-right:20px;color:white;font-weight:800;transition:width 1.2s}.fill-eatout{background:linear-gradient(135deg,var(--danger),#dc2626)}.fill-home{background:var(--gradient-primary)}.savings-highlight{background:rgba(16,185,129,0.12);border:3px solid var(--primary);border-radius:24px;padding:36px;margin-top:28px;text-align:center}.savings-amount{font-size:4rem;font-weight:900;color:var(--primary);margin-bottom:10px}.savings-badge{display:inline-flex;align-items:center;gap:10px;background:var(--gradient-primary);color:white;padding:14px 28px;border-radius:50px;font-weight:800;font-size:1.05rem;box-shadow:0 10px 30px rgba(16,185,129,0.35)}.empty-state{text-align:center;padding:100px 24px;color:var(--text-secondary)}.empty-state-icon{width:140px;height:140px;background:var(--bg-secondary);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 28px;font-size:3.5rem;border:3px dashed var(--border-color)}.empty-state h3{font-size:1.5rem;color:var(--text-primary);margin-bottom:12px;font-weight:800}.modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(12px);z-index:1000;display:none;align-items:center;justify-content:center;padding:24px}.modal-overlay.show{display:flex}.modal{background:var(--bg-secondary);border-radius:32px;max-width:600px;width:100%;max-height:90vh;overflow-y:auto;animation:slideUp .5s;box-shadow:var(--shadow)}.modal-image{width:100%;height:280px;object-fit:cover}.modal-content{padding:28px}.modal-title{font-size:1.8rem;font-weight:900;color:var(--text-primary);margin-bottom:20px;display:flex;justify-content:space-between;align-items:center}.modal-price{background:var(--gradient-primary);color:white;padding:10px 20px;border-radius:50px;font-size:1.1rem;font-weight:800}.servings-badge-large{background:linear-gradient(135deg,var(--accent),#ec4899);color:white;padding:12px 20px;border-radius:16px;display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.1rem;margin-bottom:24px;box-shadow:0 10px 25px rgba(244,114,182,0.35)}.modal-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}.modal-stat{background:var(--bg-primary);padding:16px;border-radius:16px;text-align:center;border:1px solid var(--border-color)}.modal-stat-icon{font-size:1.4rem;color:var(--primary);margin-bottom:6px}.modal-stat-value{font-weight:800;color:var(--text-primary);font-size:1.1rem}.modal-stat-label{font-size:.75rem;color:var(--text-secondary);font-weight:600;text-transform:uppercase}.recipe-ingredients-list{background:var(--bg-primary);border-radius:20px;padding:20px;margin-bottom:20px}.recipe-ingredient-item{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border-color)}.recipe-ingredient-item:last-child{border-bottom:none}.recipe-ingredient-name{display:flex;align-items:center;gap:12px;font-weight:600;color:var(--text-primary)}.recipe-ingredient-icon{width:36px;height:36px;background:var(--gradient-primary);border-radius:10px;display:flex;align-items:center;justify-content:center;color:white;font-size:.9rem}.cooking-instructions{background:rgba(16,185,129,0.08);border:2px solid rgba(16,185,129,0.2);border-radius:20px;padding:24px}.instruction-step{display:flex;gap:16px;margin-bottom:16px}.instruction-step:last-child{margin-bottom:0}.step-number{width:32px;height:32px;background:var(--gradient-primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0}.step-text{color:var(--text-secondary);line-height:1.6;font-weight:500;padding-top:4px}.modal-actions{display:flex;gap:14px;margin-top:24px}.modal-btn{flex:1;padding:16px;border-radius:16px;font-weight:800;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:10px;font-size:1rem;border:none}.modal-btn.primary{background:var(--gradient-primary);color:white}.modal-btn.secondary{background:var(--bg-primary);color:var(--text-primary);border:2px solid var(--border-color)}.modal-close{position:absolute;top:20px;right:20px;width:44px;height:44px;background:rgba(0,0,0,0.6);border:none;border-radius:50%;color:white;cursor:pointer;font-size:1.3rem;display:flex;align-items:center;justify-content:center;transition:all .3s;z-index:10}.modal-close:hover{background:var(--danger);transform:rotate(90deg)}#notification{position:fixed;top:28px;right:28px;background:var(--bg-secondary);padding:22px 28px;border-radius:20px;box-shadow:var(--shadow);font-weight:600;z-index:9999;opacity:0;transform:translateX(120%);transition:all .5s;display:flex;align-items:center;gap:18px;border-left:5px solid var(--primary);max-width:480px}#notification.show{opacity:1;transform:translateX(0)}#notification.error{border-left-color:var(--danger)}#notification.warning{border-left-color:#f59e0b}#notification-icon{width:48px;height:48px;border-radius:14px;background:var(--gradient-primary);color:white;display:flex;align-items:center;justify-content:center;font-size:1.3rem}@media(max-width:900px){.grocery-container{grid-template-columns:1fr}.stats-grid{grid-template-columns:1fr}}@media(max-width:768px){body{padding:16px}.login{padding:36px 28px}.login h1{font-size:2.2rem}.meal-grid{grid-template-columns:1fr}.tabs{padding:0 20px}.content{padding:24px}.topbar{flex-direction:column;gap:20px}.selection-summary{flex-direction:column;gap:20px;text-align:center}.selection-info{flex-direction:column;gap:20px}.modal{max-width:95%}}
-</style>
-<base target="_blank">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BudgetSmart Meals Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --secondary: #8b5cf6;
+            --danger: #ef4444;
+            --accent: #f472b6;
+            --info: #3b82f6;
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, #7c3aed 100%);
+            --gradient-bg: linear-gradient(135deg, #6366f1 0%, #8b5cf6 33%, #d946ef 66%, #f472b6 100%);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color .3s, color .3s;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            background: var(--gradient-bg);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            color: var(--text-primary);
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.92);
+            border-radius: 32px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        [data-theme="dark"] .card {
+            background: rgba(30,41,59,0.92);
+        }
+
+        /* Login Section */
+        .login {
+            padding: 56px;
+            text-align: center;
+        }
+
+        .brand {
+            margin-bottom: 40px;
+        }
+
+        .brand-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-primary);
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 3rem;
+            box-shadow: 0 25px 50px rgba(16,185,129,0.35);
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .login h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            font-size: 1.15rem;
+            font-weight: 500;
+        }
+
+        /* Tabs */
+        .login-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 36px;
+            background: var(--bg-primary);
+            padding: 8px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .login-tabs button {
+            flex: 1;
+            padding: 16px;
+            border: none;
+            cursor: pointer;
+            background: transparent;
+            border-radius: 14px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .login-tabs button.active {
+            background: var(--bg-secondary);
+            color: var(--primary);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        .tabs {
+            display: flex;
+            padding: 0 36px;
+            gap: 8px;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 20px;
+            border: none;
+            cursor: pointer;
+            background: transparent;
+            font-weight: 700;
+            color: var(--text-secondary);
+            border-bottom: 4px solid transparent;
+            margin-bottom: -1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 1rem;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+            background: var(--bg-secondary);
+        }
+
+        /* Forms */
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 18px 18px 18px 52px;
+            border-radius: 18px;
+            border: 2px solid var(--border-color);
+            font-size: 1rem;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 5px rgba(16,185,129,0.12);
+        }
+
+        .input-group label {
+            position: absolute;
+            left: 52px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            pointer-events: none;
+            transition: all .3s;
+            background: var(--bg-secondary);
+            padding: 0 6px;
+        }
+
+        .input-group input:focus + label,
+        .input-group input:not(:placeholder-shown) + label {
+            top: 0;
+            font-size: .8rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            width: 100%;
+            padding: 20px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 18px;
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 1.15rem;
+            box-shadow: 0 15px 35px rgba(16,185,129,0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 45px rgba(16,185,129,0.45);
+        }
+
+        .icon-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 16px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all .3s;
+        }
+
+        .icon-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Saved Accounts */
+        .saved-accounts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .saved-account {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px;
+            background: var(--bg-primary);
+            border-radius: 16px;
+            border: 2px solid var(--border-color);
+            cursor: pointer;
+            transition: all .3s;
+        }
+
+        .saved-account:hover {
+            background: var(--bg-secondary);
+            transform: translateY(-3px);
+            border-color: var(--primary);
+        }
+
+        .saved-account-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+        }
+
+        .delete-btn {
+            background: transparent;
+            color: var(--danger);
+            border: none;
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background: rgba(239,68,68,0.1);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Topbar */
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 36px;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .user-avatar {
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-primary);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.6rem;
+            box-shadow: 0 12px 28px rgba(16,185,129,0.35);
+        }
+
+        #loggedUser {
+            font-weight: 800;
+            font-size: 1.4rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-greeting {
+            font-size: .9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .topbar-actions {
+            display: flex;
+            gap: 14px;
+        }
+
+        /* Content */
+        .content {
+            padding: 36px;
+            min-height: 550px;
+            background: var(--bg-primary);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn .5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Planner */
+        .planner-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .budget-input-group {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: var(--bg-secondary);
+            padding: 16px 24px;
+            border-radius: 20px;
+            border: 2px solid var(--border-color);
+        }
+
+        .budget-input-group i {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .budget-input-group input {
+            border: none;
+            background: transparent;
+            font-size: 1.8rem;
+            font-weight: 800;
+            width: 140px;
+            color: var(--text-primary);
+        }
+
+        .budget-input-group input:focus {
+            outline: none;
+        }
+
+        /* Selection Summary */
+        .selection-summary {
+            background: var(--gradient-secondary);
+            border-radius: 24px;
+            padding: 24px 32px;
+            margin-bottom: 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            box-shadow: 0 20px 50px rgba(139,92,246,0.35);
+        }
+
+        .selection-info {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .selection-stat-value {
+            font-size: 2rem;
+            font-weight: 900;
+        }
+
+        .selection-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 22px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-secondary);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--text-secondary);
+            font-size: .9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-btn.active {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: white;
+        }
+
+        /* Meal Grid */
+        .meal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .meal-card {
+            background: var(--bg-secondary);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            transition: all .4s;
+            border: 3px solid var(--border-color);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .meal-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow);
+        }
+
+        .meal-card.selected {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(16,185,129,0.15);
+        }
+
+        .meal-select-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all .3s;
+            z-index: 5;
+        }
+
+        .meal-card.selected .meal-select-badge {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .meal-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .meal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .6s;
+        }
+
+        .meal-card:hover .meal-image img {
+            transform: scale(1.15);
+        }
+
+        .meal-overlay {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: rgba(0,0,0,0.85);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .servings-badge {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            background: linear-gradient(135deg, var(--accent), #ec4899);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: .9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 8px 20px rgba(244,114,182,0.4);
+        }
+
+        .servings-badge i {
+            font-size: .8rem;
+        }
+
+        .meal-category-badge {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            background: var(--gradient-secondary);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: .8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .meal-content {
+            padding: 24px;
+        }
+
+        .meal-name {
+            font-weight: 800;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            margin-bottom: 14px;
+        }
+
+        .meal-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 14px;
+        }
+
+        .meal-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .meal-meta-item i {
+            color: var(--primary);
+        }
+
+        .ingredient-tag {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: .8rem;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Grocery Section */
+        .grocery-container {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 28px;
+        }
+
+        .grocery-list-card {
+            background: var(--bg-secondary);
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .selected-meals-summary {
+            background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(52,211,153,0.08) 100%);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 2px solid rgba(16,185,129,0.2);
+        }
+
+        .selected-meals-title {
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.05rem;
+        }
+
+        .selected-meals-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        /* FIXED: Clickable meal tags */
+        .selected-meal-tag {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 50px;
+            font-size: .95rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all .3s;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 12px rgba(16,185,129,0.25);
+            position: relative;
+            z-index: 10;
+            pointer-events: auto;
+            user-select: none;
+        }
+
+        .selected-meal-tag:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(16,185,129,0.4);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .selected-meal-tag .servings-hint {
+            background: rgba(255,255,255,0.25);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: .75rem;
+            pointer-events: none;
+        }
+
+        .grocery-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 18px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .grocery-title {
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .grocery-count {
+            background: var(--gradient-primary);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .9rem;
+            font-weight: 800;
+        }
+
+        .grocery-category {
+            margin-bottom: 24px;
+        }
+
+        .grocery-category-title {
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .grocery-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .grocery-item:hover {
+            background: var(--bg-tertiary);
+            margin: 0 -28px;
+            padding-left: 28px;
+            padding-right: 28px;
+        }
+
+        .grocery-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .grocery-icon {
+            width: 46px;
+            height: 46px;
+            background: var(--gradient-primary);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .grocery-name {
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .grocery-qty {
+            font-size: .85rem;
+            color: var(--text-secondary);
+            margin-top: 3px;
+        }
+
+        .grocery-price {
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* Summary Card */
+        .summary-card {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 32px;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(16,185,129,0.35);
+            position: sticky;
+            top: 24px;
+        }
+
+        .summary-amount {
+            font-size: 3.2rem;
+            font-weight: 900;
+            margin-bottom: 28px;
+        }
+
+        .summary-stat {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 16px;
+            margin-bottom: 14px;
+        }
+
+        .summary-stat-label {
+            font-size: .95rem;
+            opacity: .9;
+        }
+
+        .summary-stat-value {
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        .budget-warning {
+            background: rgba(239,68,68,0.15);
+            border: 2px solid var(--danger);
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: var(--danger);
+            font-weight: 700;
+        }
+
+        .budget-ok {
+            background: rgba(16,185,129,0.15);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 36px;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            padding: 32px;
+            border-radius: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all .4s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow);
+        }
+
+        .stat-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+            font-size: 1.7rem;
+            background: rgba(16,185,129,0.1);
+            color: var(--primary);
+        }
+
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .stat-change {
+            font-size: .9rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Chart Container */
+        .chart-container {
+            background: var(--bg-secondary);
+            padding: 36px;
+            border-radius: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            margin-top: 28px;
+        }
+
+        .chart-title {
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .comparison-bar {
+            margin-bottom: 28px;
+        }
+
+        .comparison-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .comparison-track {
+            height: 48px;
+            background: var(--bg-tertiary);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .comparison-fill {
+            height: 100%;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 20px;
+            color: white;
+            font-weight: 800;
+            transition: width 1.2s;
+        }
+
+        .fill-eatout {
+            background: linear-gradient(135deg, var(--danger), #dc2626);
+        }
+
+        .fill-home {
+            background: var(--gradient-primary);
+        }
+
+        .savings-highlight {
+            background: rgba(16,185,129,0.12);
+            border: 3px solid var(--primary);
+            border-radius: 24px;
+            padding: 36px;
+            margin-top: 28px;
+            text-align: center;
+        }
+
+        .savings-amount {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .savings-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.05rem;
+            box-shadow: 0 10px 30px rgba(16,185,129,0.35);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 100px 24px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state-icon {
+            width: 140px;
+            height: 140px;
+            background: var(--bg-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px;
+            font-size: 3.5rem;
+            border: 3px dashed var(--border-color);
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-secondary);
+            border-radius: 32px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp .5s;
+            box-shadow: var(--shadow);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .modal-content {
+            padding: 28px;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-price {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 800;
+        }
+
+        .servings-badge-large {
+            background: linear-gradient(135deg, var(--accent), #ec4899);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 25px rgba(244,114,182,0.35);
+        }
+
+        .modal-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .modal-stat {
+            background: var(--bg-primary);
+            padding: 16px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .modal-stat-icon {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .modal-stat-value {
+            font-weight: 800;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+        }
+
+        .modal-stat-label {
+            font-size: .75rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .recipe-ingredients-list {
+            background: var(--bg-primary);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .recipe-ingredient-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .recipe-ingredient-item:last-child {
+            border-bottom: none;
+        }
+
+        .recipe-ingredient-name {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .recipe-ingredient-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--gradient-primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: .9rem;
+        }
+
+        .cooking-instructions {
+            background: rgba(16,185,129,0.08);
+            border: 2px solid rgba(16,185,129,0.2);
+            border-radius: 20px;
+            padding: 24px;
+        }
+
+        .instruction-step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .instruction-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: .9rem;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-weight: 500;
+            padding-top: 4px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 14px;
+            margin-top: 24px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 16px;
+            border-radius: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all .3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 1rem;
+            border: none;
+        }
+
+        .modal-btn.primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .modal-btn.secondary {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .3s;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: var(--danger);
+            transform: rotate(90deg);
+        }
+
+        /* Notification */
+        #notification {
+            position: fixed;
+            top: 28px;
+            right: 28px;
+            background: var(--bg-secondary);
+            padding: 22px 28px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            font-weight: 600;
+            z-index: 9999;
+            opacity: 0;
+            transform: translateX(120%);
+            transition: all .5s;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            border-left: 5px solid var(--primary);
+            max-width: 480px;
+        }
+
+        #notification.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        #notification.error {
+            border-left-color: var(--danger);
+        }
+
+        #notification.warning {
+            border-left-color: #f59e0b;
+        }
+
+        #notification-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: var(--gradient-primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        /* Responsive */
+        @media(max-width: 900px) {
+            .grocery-container { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+
+        @media(max-width: 768px) {
+            body { padding: 16px; }
+            .login { padding: 36px 28px; }
+            .login h1 { font-size: 2.2rem; }
+            .meal-grid { grid-template-columns: 1fr; }
+            .tabs { padding: 0 20px; }
+            .content { padding: 24px; }
+            .topbar { flex-direction: column; gap: 20px; }
+            .selection-summary { flex-direction: column; gap: 20px; text-align: center; }
+            .selection-info { flex-direction: column; gap: 20px; }
+            .modal { max-width: 95%; }
+        }
+    </style>
+    <base target="_blank">
 </head>
 <body>
-<div class="container">
-<div id="notification" class="hidden"><div id="notification-icon"><i class="fas fa-check"></i></div><div><div id="notification-title" style="font-weight:800;margin-bottom:4px">Success</div><div id="notification-text" style="font-size:.95rem;color:var(--text-secondary)"></div></div></div>
-<div id="loginCard" class="card login"><div class="brand"><div class="brand-icon">🍽️</div><h1>BudgetSmart Pro</h1><p class="subtitle">Pick your meals, track your budget, save money</p></div><div class="login-tabs"><button id="loginTabBtn" class="active" onclick="showLogin()"><i class="fas fa-sign-in-alt"></i> Sign In</button><button id="createTabBtn" onclick="showCreate()"><i class="fas fa-user-plus"></i> Create Account</button></div><div id="loginForm"><div class="input-group"><i class="fas fa-user"></i><input type="text" id="username" placeholder=" "><label>Username</label></div><div class="input-group"><i class="fas fa-lock"></i><input type="password" id="password" placeholder=" "><label>Password</label></div><button class="btn-primary" onclick="login()"><span>Sign In</span><i class="fas fa-arrow-right"></i></button><div style="font-weight:800;margin-top:36px;text-align:left;color:var(--text-primary);font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;display:flex;align-items:center;gap:10px"><i class="fas fa-history"></i> Quick Access</div><div class="saved-accounts-grid" id="savedAccounts"></div></div><div id="createForm" class="hidden"><div class="input-group"><i class="fas fa-user"></i><input type="text" id="newUsername" placeholder=" "><label>Choose Username</label></div><div class="input-group"><i class="fas fa-lock"></i><input type="password" id="newPassword" placeholder=" "><label>Create Password</label></div><button class="btn-primary" onclick="createAccount()"><span>Create Account</span><i class="fas fa-user-plus"></i></button></div></div>
-<div id="appCard" class="card hidden"><div class="topbar"><div class="user-info"><div class="user-avatar"><i class="fas fa-user"></i></div><div id="loggedUser"><span class="user-greeting">Welcome back,</span><span id="userNameDisplay" style="color:var(--primary)">User</span></div></div><div class="topbar-actions"><button class="icon-btn" onclick="logout()" style="color:var(--danger)"><i class="fas fa-sign-out-alt"></i></button></div></div><div class="tabs"><button class="tab-btn active" onclick="openTab('planner',this)"><i class="fas fa-utensils"></i> Pick Meals</button><button class="tab-btn" onclick="openTab('grocery',this)"><i class="fas fa-shopping-basket"></i> Groceries</button><button class="tab-btn" onclick="openTab('savings',this)"><i class="fas fa-piggy-bank"></i> Savings</button></div><div class="content">
-<div id="planner" class="tab-content active"><div class="planner-header"><div class="budget-input-group"><i class="fas fa-peso-sign"></i><input type="number" id="budget" placeholder="0" min="0"><span>Budget</span></div></div><div id="selectionSummary" class="selection-summary hidden"><div class="selection-info"><div class="selection-stat"><span class="selection-stat-value" id="selectedCount">0</span><span style="font-size:.85rem;opacity:.9">Meals Selected</span></div><div class="selection-stat"><span class="selection-stat-value">₱<span id="totalCost">0</span></span><span style="font-size:.85rem;opacity:.9">Total Cost</span></div><div class="selection-stat"><span class="selection-stat-value" id="totalPeople">0</span><span style="font-size:.85rem;opacity:.9">Total People</span></div><div class="selection-stat"><span class="selection-stat-value">₱<span id="remainingBudget">0</span></span><span style="font-size:.85rem;opacity:.9">Remaining</span></div></div><button class="selection-btn" style="background:rgba(239,68,68,0.3)" onclick="clearAllSelections()"><i class="fas fa-trash"></i> Clear All</button></div><div class="filter-bar"><button class="filter-btn active" onclick="filterMeals('all',this)"><i class="fas fa-th-large"></i> All</button><button class="filter-btn" onclick="filterMeals('Protein',this)"><i class="fas fa-drumstick-bite"></i> Protein</button><button class="filter-btn" onclick="filterMeals('Vegetable',this)"><i class="fas fa-leaf"></i> Vegetable</button><button class="filter-btn" onclick="filterMeals('Seafood',this)"><i class="fas fa-fish"></i> Seafood</button><button class="filter-btn" onclick="filterMeals('Breakfast',this)"><i class="fas fa-egg"></i> Breakfast</button><button class="filter-btn" onclick="filterMeals('Noodles',this)"><i class="fas fa-utensils"></i> Noodles</button></div><div class="meal-section"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px"><div class="section-title"><i class="fas fa-utensils" style="background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent"></i> Choose Your Meals</div><div style="color:var(--text-secondary);font-size:.95rem;font-weight:500"><i class="fas fa-info-circle"></i> Click to select meals</div></div><div class="meal-grid" id="mealCatalog"></div></div></div>
-<div id="grocery" class="tab-content"><div id="groceryEmpty" class="empty-state"><div class="empty-state-icon">🛒</div><h3>No meals selected yet</h3><p>Go to "Pick Meals" tab and select the meals you want to cook. Your shopping list will be generated automatically.</p></div><div id="groceryContainer" class="hidden grocery-container"><div class="grocery-list-card"><div class="selected-meals-summary"><div class="selected-meals-title"><i class="fas fa-utensils"></i> Your Selected Meals (Click to view recipe)</div><div class="selected-meals-list" id="selectedMealsList"></div></div><div class="grocery-header"><div class="grocery-title"><i class="fas fa-clipboard-list"></i> Shopping List</div><div class="grocery-count" id="groceryItemCount">0</div></div><div id="groceryList"></div></div><div><div class="summary-card"><div style="font-size:.95rem;opacity:.9;margin-bottom:10px;font-weight:600">Total Estimated Cost</div><div class="summary-amount">₱<span id="groceryCost">0</span></div><div class="summary-stat"><span class="summary-stat-label">Meals Selected</span><span class="summary-stat-value" id="selectedMealsCount">0</span></div><div class="summary-stat"><span class="summary-stat-label">Total Servings</span><span class="summary-stat-value" id="totalServings">0</span></div><div class="summary-stat"><span class="summary-stat-label">Total People</span><span class="summary-stat-value" id="totalPeopleSummary">0</span></div><div class="summary-stat"><span class="summary-stat-label">Total Items</span><span class="summary-stat-value" id="totalItems">0</span></div><div class="summary-stat"><span class="summary-stat-label">Avg. per Person</span><span class="summary-stat-value">₱<span id="avgPerPerson">0</span></span></div><div id="budgetStatus"></div></div></div></div></div>
-<div id="savings" class="tab-content"><div id="savingsEmpty" class="empty-state"><div class="empty-state-icon">💡</div><h3>Select meals to see savings</h3><p>Choose your meals from the "Pick Meals" tab to see how much you can save compared to eating out.</p></div><div id="savingsContainer" class="hidden"><div style="text-align:center;margin-bottom:36px"><h2 style="font-size:2rem;font-weight:900;color:var(--text-primary);margin-bottom:10px">💰 Cost Comparison Analysis</h2><p style="color:var(--text-secondary);font-size:1.05rem;font-weight:500">See how much you save by cooking at home vs. eating out</p></div><div class="stats-grid"><div class="stat-card" style="position:relative;overflow:hidden"><div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--danger)"></div><div class="stat-icon" style="background:rgba(239,68,68,0.1);color:var(--danger)"><i class="fas fa-utensils"></i></div><div style="color:var(--text-secondary);font-size:.95rem;margin-bottom:10px;font-weight:600">Eating Out Cost</div><div class="stat-value">₱<span id="eatOut">0</span></div><div class="stat-change" style="color:var(--danger)"><i class="fas fa-receipt"></i> Restaurant prices</div></div><div class="stat-card" style="position:relative;overflow:hidden"><div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--info)"></div><div class="stat-icon" style="background:rgba(59,130,246,0.1);color:var(--info)"><i class="fas fa-home"></i></div><div style="color:var(--text-secondary);font-size:.95rem;margin-bottom:10px;font-weight:600">Home Cooking</div><div class="stat-value">₱<span id="appCost">0</span></div><div class="stat-change"><i class="fas fa-check"></i> Your selection</div></div><div class="stat-card" style="position:relative;overflow:hidden"><div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--primary)"></div><div class="stat-icon"><i class="fas fa-piggy-bank"></i></div><div style="color:var(--text-secondary);font-size:.95rem;margin-bottom:10px;font-weight:600">Your Savings</div><div class="stat-value">₱<span id="savingsValue">0</span></div><div class="stat-change"><i class="fas fa-arrow-down"></i> Money saved</div></div></div><div class="chart-container"><div class="chart-title"><i class="fas fa-chart-bar"></i> Visual Comparison</div><div class="comparison-bar"><div class="comparison-label"><span>Eating Out (₱150/meal average)</span><span id="eatOutPercent">0%</span></div><div class="comparison-track"><div class="comparison-fill fill-eatout" id="eatOutBar" style="width:0%">₱<span id="eatOutBarValue">0</span></div></div></div><div class="comparison-bar"><div class="comparison-label"><span>Home Cooking (Your Selection)</span><span id="homePercent">0%</span></div><div class="comparison-track"><div class="comparison-fill fill-home" id="homeBar" style="width:0%">₱<span id="homeBarValue">0</span></div></div></div></div><div class="savings-highlight"><div class="savings-amount">₱<span id="monthlySavings">0</span></div><div style="color:var(--text-secondary);font-size:1.1rem;margin-bottom:20px;font-weight:500">Estimated monthly savings if you stick to this plan</div><div class="savings-badge"><i class="fas fa-trophy"></i> Save <span id="savingsPercent">0</span>% vs eating out</div></div></div></div>
-</div></div>
-</div>
-<div class="modal-overlay" id="mealModal"><div class="modal"><button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button><img class="modal-image" id="modalImage" src="" alt=""><div class="modal-content"><div class="modal-title"><span id="modalMealName">Meal Name</span><span class="modal-price">₱<span id="modalPrice">0</span></span></div><div class="servings-badge-large"><i class="fas fa-users"></i><span>Good for <span id="modalServingsBadge">2</span> <span id="modalServingsText">people</span></span></div><div class="modal-stats"><div class="modal-stat"><div class="modal-stat-icon"><i class="fas fa-fire"></i></div><div class="modal-stat-value" id="modalCalories">0</div><div class="modal-stat-label">Calories</div></div><div class="modal-stat"><div class="modal-stat-icon"><i class="fas fa-clock"></i></div><div class="modal-stat-value" id="modalTime">30</div><div class="modal-stat-label">Minutes</div></div><div class="modal-stat"><div class="modal-stat-icon"><i class="fas fa-layer-group"></i></div><div class="modal-stat-value" id="modalCategory">Protein</div><div class="modal-stat-label">Category</div></div></div><div class="modal-section"><div style="font-weight:800;color:var(--text-primary);margin-bottom:14px;display:flex;align-items:center;gap:10px;font-size:1.1rem"><i class="fas fa-list-check" style="color:var(--primary)"></i> Recipe Ingredients</div><div class="recipe-ingredients-list" id="modalRecipeIngredients"></div></div><div class="modal-section"><div style="font-weight:800;color:var(--text-primary);margin-bottom:14px;display:flex;align-items:center;gap:10px;font-size:1.1rem"><i class="fas fa-fire-burner" style="color:var(--accent)"></i> Cooking Instructions</div><div class="cooking-instructions" id="modalInstructions"></div></div><div class="modal-actions"><button class="modal-btn secondary" onclick="closeModal()"><i class="fas fa-times"></i> Close</button><button class="modal-btn primary" id="modalSelectBtn" onclick="toggleMealFromModal()"><i class="fas fa-plus"></i> <span id="modalSelectText">Add to List</span></button></div></div></div></div>
-<script>
-const ingredientPrices={Chicken:45,Pork:55,Beef:85,"Ground Pork":50,Fish:60,"Beef Tapa":75,Bangus:70,Papaya:25,Malunggay:15,Vegetables:35,"Mixed Vegetables":30,Tomato:12,Onion:10,Garlic:8,Ginger:8,Potato:15,Calamansi:6,"Bell Pepper":15,Carrot:12,Cabbage:25,Spinach:20,Rice:12,"Soy Sauce":5,Vinegar:5,"Cooking Oil":8,"Coconut Milk":30,"Fish Sauce":5,"Oyster Sauce":10,Noodles:18,Wrapper:15,Egg:10,Butter:15,Salt:2,Pepper:3,Sugar:5};
-const meals=[{id:1,name:"Chicken Adobo",ingredients:[{name:"Chicken",qty:1,unit:"250g"},{name:"Soy Sauce",qty:3,unit:"tbsp"},{name:"Vinegar",qty:2,unit:"tbsp"},{name:"Garlic",qty:1,unit:"head"},{name:"Onion",qty:1,unit:"piece"},{name:"Rice",qty:1,unit:"cup"}],calories:380,prepTime:35,servings:2,image:"https://images.unsplash.com/photo-1604579278540-bdb4672b9eb0?w=400",category:"Protein",instructions:["Marinate chicken in soy sauce and vinegar for 15 mins","Sauté garlic and onion until fragrant","Add chicken and sear until brown","Pour marinade and simmer for 30 mins","Serve hot with steamed rice"]},{id:2,name:"Tinolang Manok",ingredients:[{name:"Chicken",qty:1,unit:"250g"},{name:"Papaya",qty:.5,unit:"piece"},{name:"Malunggay",qty:1,unit:"bundle"},{name:"Ginger",qty:1,unit:"piece"},{name:"Onion",qty:1,unit:"piece"},{name:"Rice",qty:1,unit:"cup"}],calories:320,prepTime:40,servings:2,image:"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400",category:"Protein",instructions:["Sauté ginger, onion until fragrant","Add chicken and cook until white","Add water and simmer for 20 mins","Add papaya and cook until tender","Add malunggay leaves and serve"]},{id:3,name:"Sinigang na Baboy",ingredients:[{name:"Pork",qty:1,unit:"200g"},{name:"Vegetables",qty:1,unit:"mix"},{name:"Tomato",qty:2,unit:"pieces"},{name:"Onion",qty:1,unit:"piece"},{name:"Fish Sauce",qty:1,unit:"tbsp"},{name:"Rice",qty:1,unit:"cup"}],calories:420,prepTime:45,servings:2,image:"https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400",category:"Protein",instructions:["Boil pork in water with tomato and onion","Simmer until pork is tender (30 mins)","Add vegetables and cook for 10 mins","Season with fish sauce","Serve hot with rice"]},{id:4,name:"Tapsilog",ingredients:[{name:"Beef Tapa",qty:1,unit:"150g"},{name:"Egg",qty:1,unit:"piece"},{name:"Rice",qty:1,unit:"cup"},{name:"Garlic",qty:.5,unit:"head"},{name:"Vinegar",qty:1,unit:"tbsp"}],calories:580,prepTime:25,servings:1,image:"https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400",category:"Breakfast",instructions:["Marinate beef in vinegar, garlic overnight","Fry beef until caramelized","Fry egg sunny side up","Serve with garlic fried rice"]},{id:5,name:"Pancit Canton",ingredients:[{name:"Noodles",qty:1,unit:"pack"},{name:"Vegetables",qty:1,unit:"mix"},{name:"Pork",qty:.5,unit:"100g"},{name:"Soy Sauce",qty:2,unit:"tbsp"},{name:"Garlic",qty:.5,unit:"head"}],calories:350,prepTime:20,servings:2,image:"https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400",category:"Noodles",instructions:["Sauté garlic and pork until cooked","Add vegetables and stir fry","Add noodles and soy sauce","Toss until well combined","Serve immediately"]},{id:6,name:"Lumpiang Shanghai",ingredients:[{name:"Ground Pork",qty:1,unit:"200g"},{name:"Wrapper",qty:1,unit:"pack"},{name:"Onion",qty:.5,unit:"piece"},{name:"Garlic",qty:.5,unit:"head"},{name:"Carrot",qty:1,unit:"piece"}],calories:380,prepTime:35,servings:2,image:"https://images.unsplash.com/photo-1626804475297-411d863b67ab?w=400",category:"Protein",instructions:["Mix ground pork with minced vegetables","Wrap in lumpia wrappers","Deep fry until golden brown","Drain excess oil","Serve with vinegar dip"]},{id:7,name:"Ginisang Gulay",ingredients:[{name:"Mixed Vegetables",qty:1,unit:"mix"},{name:"Garlic",qty:.5,unit:"head"},{name:"Onion",qty:.5,unit:"piece"},{name:"Tomato",qty:1,unit:"piece"},{name:"Rice",qty:1,unit:"cup"}],calories:220,prepTime:15,servings:2,image:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400",category:"Vegetable",instructions:["Sauté garlic, onion and tomato","Add mixed vegetables","Stir fry for 5-7 minutes","Season with salt and pepper","Serve with steamed rice"]},{id:8,name:"Beef Steak Tagalog",ingredients:[{name:"Beef",qty:1,unit:"200g"},{name:"Onion",qty:1,unit:"piece"},{name:"Soy Sauce",qty:3,unit:"tbsp"},{name:"Calamansi",qty:3,unit:"pieces"},{name:"Garlic",qty:.5,unit:"head"},{name:"Rice",qty:1,unit:"cup"}],calories:480,prepTime:40,servings:2,image:"https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=400",category:"Protein",instructions:["Marinate beef in soy sauce, calamansi, garlic","Pan fry beef until browned","Add onions and cook until soft","Pour marinade and simmer","Serve with rice"]},{id:9,name:"Bangus Sisig",ingredients:[{name:"Bangus",qty:1,unit:"piece"},{name:"Onion",qty:1,unit:"piece"},{name:"Garlic",qty:.5,unit:"head"},{name:"Egg",qty:1,unit:"piece"},{name:"Calamansi",qty:2,unit:"pieces"},{name:"Rice",qty:1,unit:"cup"}],calories:340,prepTime:30,servings:2,image:"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400",category:"Seafood",instructions:["Grill bangus until cooked","Flake the fish meat","Sauté garlic and onion","Add fish and calamansi","Top with fried egg, serve"]},{id:10,name:"Pinakbet",ingredients:[{name:"Mixed Vegetables",qty:1,unit:"mix"},{name:"Pork",qty:.5,unit:"100g"},{name:"Fish Sauce",qty:2,unit:"tbsp"},{name:"Garlic",qty:.5,unit:"head"},{name:"Onion",qty:.5,unit:"piece"},{name:"Tomato",qty:1,unit:"piece"}],calories:250,prepTime:25,servings:2,image:"https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400",category:"Vegetable",instructions:["Sauté garlic, onion, tomato","Add pork and cook until brown","Add vegetables and fish sauce","Simmer until vegetables are tender","Serve hot"]},{id:11,name:"Chicken Tinola",ingredients:[{name:"Chicken",qty:1,unit:"250g"},{name:"Papaya",qty:.5,unit:"piece"},{name:"Malunggay",qty:1,unit:"bundle"},{name:"Ginger",qty:1,unit:"piece"},{name:"Onion",qty:1,unit:"piece"},{name:"Rice",qty:1,unit:"cup"}],calories:310,prepTime:35,servings:2,image:"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400",category:"Protein",instructions:["Sauté ginger and onion","Add chicken pieces and cook","Pour water and simmer 20 mins","Add papaya chunks","Add malunggay before serving"]},{id:12,name:"Pork Menudo",ingredients:[{name:"Pork",qty:1,unit:"200g"},{name:"Potato",qty:1,unit:"piece"},{name:"Carrot",qty:1,unit:"piece"},{name:"Tomato",qty:1,unit:"piece"},{name:"Garlic",qty:.5,unit:"head"},{name:"Rice",qty:1,unit:"cup"}],calories:400,prepTime:45,servings:2,image:"https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400",category:"Protein",instructions:["Sauté garlic and tomato","Add pork and cook until brown","Add tomato sauce and simmer","Add potato and carrot","Cook until vegetables are tender"]}];
-let accounts=JSON.parse(localStorage.getItem("accounts")||"[]");if(!accounts.find(a=>a.username==="Gabo")){accounts.push({username:"Gabo",password:"Gabondat"});localStorage.setItem("accounts",JSON.stringify(accounts))}
-let selectedMeals={};let currentModalMeal=null;let currentFilter='all';
-function showNotification(message,type="success"){const notif=document.getElementById("notification");const icon=document.getElementById("notification-icon");const title=document.getElementById("notification-title");const text=document.getElementById("notification-text");text.innerText=message;const icons={success:'fa-check',error:'fa-exclamation-circle',warning:'fa-exclamation-triangle',info:'fa-info-circle'};const titles={success:'Success',error:'Error',warning:'Warning',info:'Info'};icon.innerHTML=`<i class="fas ${icons[type]}"></i>`;title.innerText=titles[type];notif.className="";if(type!=="success")notif.classList.add(type);void notif.offsetWidth;notif.classList.add("show");setTimeout(()=>{notif.classList.remove("show")},4000)}
-function showLogin(){document.getElementById('loginForm').classList.remove("hidden");document.getElementById('createForm').classList.add("hidden");document.getElementById('loginTabBtn').classList.add("active");document.getElementById('createTabBtn').classList.remove("active")}
-function showCreate(){document.getElementById('loginForm').classList.add("hidden");document.getElementById('createForm').classList.remove("hidden");document.getElementById('loginTabBtn').classList.remove("active");document.getElementById('createTabBtn').classList.add("active")}
-function displayAccounts(){const div=document.getElementById("savedAccounts");div.innerHTML="";if(accounts.length===0){div.innerHTML='<p style="color:var(--text-secondary);font-size:.95rem;grid-column:1/-1;text-align:center;padding:24px">No saved accounts yet</p>';return}accounts.forEach((acc,index)=>{const wrapper=document.createElement("div");wrapper.className="saved-account";wrapper.onclick=(e)=>{if(!e.target.closest('.delete-btn')){document.getElementById('username').value=acc.username;document.getElementById('password').value=acc.password;login()}};const avatar=document.createElement("div");avatar.className="saved-account-avatar";avatar.innerText=acc.username.charAt(0).toUpperCase();const info=document.createElement("div");info.style.flex="1";info.style.textAlign="left";info.innerHTML=`<div style="font-weight:700;color:var(--text-primary);font-size:.95rem">${acc.username}</div><div style="font-size:.75rem;color:var(--text-secondary)">Click to login</div>`;const delBtn=document.createElement("button");delBtn.className="delete-btn";delBtn.innerHTML='<i class="fas fa-times"></i>';delBtn.onclick=(e)=>{e.stopPropagation();if(confirm(`Delete account "${acc.username}"?`)){accounts.splice(index,1);localStorage.setItem("accounts",JSON.stringify(accounts));displayAccounts();showNotification("Account deleted successfully","warning")}};wrapper.appendChild(avatar);wrapper.appendChild(info);wrapper.appendChild(delBtn);div.appendChild(wrapper)})}
-function createAccount(){const u=document.getElementById('newUsername').value.trim(),p=document.getElementById('newPassword').value.trim();if(!u||!p){showNotification("Please fill in all fields","error");return}if(accounts.find(a=>a.username===u)){showNotification("Username already exists","error");return}accounts.push({username:u,password:p});localStorage.setItem("accounts",JSON.stringify(accounts));displayAccounts();showLogin();showNotification("Account created successfully! Please sign in.");document.getElementById('newUsername').value="";document.getElementById('newPassword').value=""}
-function login(){const u=document.getElementById('username').value.trim(),p=document.getElementById('password').value.trim();const acc=accounts.find(a=>a.username===u&&a.password===p);if(acc){document.getElementById('loginCard').classList.add("hidden");document.getElementById('appCard').classList.remove("hidden");document.getElementById('userNameDisplay').innerText=acc.username;showNotification(`Welcome back, ${acc.username}! Start picking your meals.`);renderMealCatalog()}else{showNotification("Invalid username or password","error")}}
-function logout(){document.getElementById('appCard').classList.add("hidden");document.getElementById('loginCard').classList.remove("hidden");document.getElementById('password').value="";selectedMeals={};resetDisplays()}
-function resetDisplays(){document.getElementById('selectionSummary').classList.add('hidden');document.getElementById('groceryEmpty').classList.remove('hidden');document.getElementById('groceryContainer').classList.add('hidden');document.getElementById('savingsEmpty').classList.remove('hidden');document.getElementById('savingsContainer').classList.add('hidden')}
-function openTab(id,btn){document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active"));document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));document.getElementById(id).classList.add("active");btn.classList.add("active")}
-function calculateMealCost(meal){let total=0;meal.ingredients.forEach(ing=>{const price=ingredientPrices[ing.name]||10;total+=price*ing.qty});return Math.round(total)}
-function getServingsText(servings){if(servings===1)return"1 person";return`${servings} people`;}
-function getBudgetStatus(){const budgetValue=Number(document.getElementById('budget').value)||0;let totalCost=0;Object.values(selectedMeals).forEach(m=>{totalCost+=calculateMealCost(m)});return{budget:budgetValue,totalCost:totalCost,remaining:budgetValue-totalCost}}
-function showBudgetNotification(){const{budget,totalCost,remaining}=getBudgetStatus();if(budget===0)return;if(remaining<0){showNotification(`⚠️ Over budget! Kulang ka ng ₱${Math.abs(remaining).toLocaleString()}`,"error")}else if(remaining===0){showNotification(`💰 Sakto sa budget! ₱0 na lang natitira`,"warning")}else if(remaining<=budget*0.2){showNotification(`⚡ Konting budget na lang! ₱${remaining.toLocaleString()} na lang natitira (20%)`,"warning")}else{showNotification(`✅ May ₱${remaining.toLocaleString()} pa sa budget mo`)}setTimeout(()=>{showNotification(`📊 Gastos: ₱${totalCost.toLocaleString()} / ₱${budget.toLocaleString()}`)},2200)}
-function renderMealCatalog(){const catalogDiv=document.getElementById("mealCatalog");catalogDiv.innerHTML="";const filteredMeals=currentFilter==='all'?meals:meals.filter(m=>m.category===currentFilter);filteredMeals.forEach(meal=>{const cost=calculateMealCost(meal);const isSelected=selectedMeals[meal.id];const servingsText=getServingsText(meal.servings);const mealEl=document.createElement('div');mealEl.className=`meal-card ${isSelected?'selected':''}`;mealEl.innerHTML=`<div class="meal-select-badge"><i class="fas fa-check"></i></div><div class="meal-image"><img src="${meal.image}" alt="${meal.name}" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400'"><div class="meal-overlay"><i class="fas fa-peso-sign"></i> ${cost}</div><div class="servings-badge"><i class="fas fa-users"></i> ${servingsText}</div><div class="meal-category-badge">${meal.category}</div></div><div class="meal-content"><div class="meal-name">${meal.name}</div><div class="meal-meta"><div class="meal-meta-item"><i class="fas fa-fire"></i> ${meal.calories} cal</div><div class="meal-meta-item"><i class="fas fa-clock"></i> ${meal.prepTime} min</div><div class="meal-meta-item"><i class="fas fa-utensils"></i> ${meal.ingredients.length} items</div></div><div class="meal-ingredients">${meal.ingredients.slice(0,3).map(ing=>`<span class="ingredient-tag">${ing.name}</span>`).join('')}${meal.ingredients.length>3?`<span class="ingredient-tag">+${meal.ingredients.length-3}</span>`:''}</div></div>`;mealEl.onclick=()=>toggleMealSelection(meal);catalogDiv.appendChild(mealEl)})}
-function filterMeals(category,btn){currentFilter=category;document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderMealCatalog()}
-function toggleMealSelection(meal){const cost=calculateMealCost(meal);const servingsText=getServingsText(meal.servings);if(selectedMeals[meal.id]){delete selectedMeals[meal.id];showNotification(`${meal.name} removed (${servingsText})`,"warning");setTimeout(()=>{const{budget,remaining}=getBudgetStatus();if(budget>0){showNotification(`💰 Natitirang budget: ₱${remaining.toLocaleString()}`)}},1500)}else{selectedMeals[meal.id]=meal;showNotification(`✅ ${meal.name} added! (${servingsText}) - ₱${cost}`);setTimeout(showBudgetNotification,800)}updateAllDisplays()}
-function clearAllSelections(){if(Object.keys(selectedMeals).length===0)return;if(confirm('Are you sure you want to clear all selected meals?')){selectedMeals={};updateAllDisplays();showNotification("All meals cleared","warning")}}
-function updateAllDisplays(){renderMealCatalog();updateSelectionSummary();calculateGroceries();calculateSavings();const hasSelections=Object.keys(selectedMeals).length>0;document.getElementById('selectionSummary').classList.toggle('hidden',!hasSelections);document.getElementById('groceryEmpty').classList.toggle('hidden',hasSelections);document.getElementById('groceryContainer').classList.toggle('hidden',!hasSelections);document.getElementById('savingsEmpty').classList.toggle('hidden',hasSelections);document.getElementById('savingsContainer').classList.toggle('hidden',!hasSelections)}
-function updateSelectionSummary(){const budgetValue=Number(document.getElementById('budget').value)||0;let totalMeals=Object.keys(selectedMeals).length;let totalCost=0;let totalPeople=0;Object.values(selectedMeals).forEach(meal=>{totalCost+=calculateMealCost(meal);totalPeople+=meal.servings});const remaining=budgetValue-totalCost;document.getElementById('selectedCount').textContent=totalMeals;document.getElementById('totalCost').textContent=totalCost.toLocaleString();document.getElementById('totalPeople').textContent=totalPeople;document.getElementById('remainingBudget').textContent=remaining.toLocaleString()}
-function calculateGroceries(){const budgetValue=Number(document.getElementById('budget').value)||0;const ingredientMap={};let totalServings=0;let totalCost=0;let totalPeople=0;Object.values(selectedMeals).forEach(meal=>{totalServings+=meal.servings;totalPeople+=meal.servings;totalCost+=calculateMealCost(meal);meal.ingredients.forEach(ing=>{const key=ing.name;if(!ingredientMap[key]){ingredientMap[key]={name:ing.name,totalQty:0,unit:ing.unit,price:ingredientPrices[ing.name]||10}}ingredientMap[key].totalQty+=ing.qty})});const selectedMealsListDiv=document.getElementById("selectedMealsList");selectedMealsListDiv.innerHTML=Object.values(selectedMeals).map(meal=>{const servingsText=getServingsText(meal.servings);return`<span class="selected-meal-tag" onclick="openMealModalById(${meal.id})">${meal.name}<span class="servings-hint">${servingsText}</span></span>`}).join('');const groceryListDiv=document.getElementById("groceryList");groceryListDiv.innerHTML="";const categories={'Proteins':['Chicken','Pork','Beef','Ground Pork','Fish','Bangus','Beef Tapa'],'Vegetables':['Papaya','Malunggay','Vegetables','Mixed Vegetables','Tomato','Onion','Garlic','Ginger','Potato','Calamansi','Bell Pepper','Carrot','Cabbage','Spinach'],'Pantry':['Rice','Soy Sauce','Vinegar','Cooking Oil','Coconut Milk','Fish Sauce','Oyster Sauce','Noodles','Wrapper','Salt','Pepper','Sugar'],'Dairy & Eggs':['Egg','Butter']};const getCategory=(ingName)=>{for(const[cat,items]of Object.entries(categories)){if(items.includes(ingName))return cat}return'Other'};const categorized={};Object.values(ingredientMap).forEach(item=>{const cat=getCategory(item.name);if(!categorized[cat])categorized[cat]=[];categorized[cat].push(item)});let totalGroceryCost=0;let itemCount=0;const icons={"Chicken":"fa-drumstick-bite","Pork":"fa-bacon","Beef":"fa-drumstick-bite","Fish":"fa-fish","Bangus":"fa-fish","Rice":"fa-seedling","Egg":"fa-egg","Garlic":"fa-seedling","Onion":"fa-seedling","Tomato":"fa-seedling","Vegetables":"fa-leaf","Mixed Vegetables":"fa-leaf","Papaya":"fa-apple-alt","Noodles":"fa-utensils","Wrapper":"fa-box","default":"fa-shopping-basket"};Object.entries(categorized).forEach(([category,items])=>{const categoryDiv=document.createElement('div');categoryDiv.className='grocery-category';categoryDiv.innerHTML=`<div class="grocery-category-title"><i class="fas fa-folder"></i> ${category}</div>`;items.sort((a,b)=>a.name.localeCompare(b.name)).forEach(item=>{const subtotal=Math.round(item.price*item.totalQty);totalGroceryCost+=subtotal;itemCount+=Math.ceil(item.totalQty);const iconClass=icons[item.name]||icons.default;const itemEl=document.createElement('div');itemEl.className='grocery-item';itemEl.innerHTML=`<div class="grocery-info"><div class="grocery-icon"><i class="fas ${iconClass}"></i></div><div><div class="grocery-name">${item.name}</div><div class="grocery-qty">${Math.ceil(item.totalQty)} × ₱${item.price} each</div></div></div><div class="grocery-price">₱${subtotal}</div>`;categoryDiv.appendChild(itemEl)});groceryListDiv.appendChild(categoryDiv)});document.getElementById("groceryCost").innerText=totalGroceryCost.toLocaleString();document.getElementById("groceryItemCount").innerText=Object.keys(ingredientMap).length;document.getElementById("totalItems").innerText=itemCount;document.getElementById("selectedMealsCount").innerText=Object.keys(selectedMeals).length;document.getElementById("totalServings").innerText=totalServings;document.getElementById("totalPeopleSummary").innerText=totalPeople;document.getElementById("avgPerPerson").innerText=totalPeople>0?Math.round(totalGroceryCost/totalPeople):0;const budgetStatus=document.getElementById("budgetStatus");const remaining=budgetValue-totalGroceryCost;if(budgetValue>0){if(remaining<0){budgetStatus.innerHTML=`<div class="budget-warning"><i class="fas fa-exclamation-triangle"></i><span>Over budget by ₱${Math.abs(remaining).toLocaleString()}</span></div>`}else{budgetStatus.innerHTML=`<div class="budget-warning budget-ok"><i class="fas fa-check-circle"></i><span>Within budget! ₱${remaining.toLocaleString()} remaining</span></div>`}}else{budgetStatus.innerHTML=''}}
-function calculateSavings(){const totalMeals=Object.keys(selectedMeals).length;let totalCost=0;let totalPeople=0;Object.values(selectedMeals).forEach(meal=>{totalCost+=calculateMealCost(meal);totalPeople+=meal.servings});const eatOutCostPerMeal=150;const eatOutCost=totalPeople*eatOutCostPerMeal;const savings=eatOutCost-totalCost;document.getElementById("eatOut").innerText=eatOutCost.toLocaleString();document.getElementById("appCost").innerText=totalCost.toLocaleString();document.getElementById("savingsValue").innerText=savings.toLocaleString();const savingsPercent=eatOutCost>0?Math.round((savings/eatOutCost)*100):0;document.getElementById("savingsPercent").innerText=savingsPercent;document.getElementById("monthlySavings").innerText=(savings*4).toLocaleString();setTimeout(()=>{const maxVal=Math.max(eatOutCost,totalCost,1);const eatOutWidth=(eatOutCost/maxVal)*100;const homeWidth=(totalCost/maxVal)*100;document.getElementById('eatOutBar').style.width=eatOutWidth+'%';document.getElementById('eatOutBarValue').innerText=eatOutCost.toLocaleString();document.getElementById('homeBar').style.width=homeWidth+'%';document.getElementById('homeBarValue').innerText=totalCost.toLocaleString();document.getElementById('eatOutPercent').innerText='100%';document.getElementById('homePercent').innerText=eatOutCost>0?Math.round((totalCost/eatOutCost)*100)+'%':'0%'},100)}
-function openMealModalById(mealId){const meal=meals.find(m=>m.id===mealId);if(meal)openMealModal(meal)}
-function openMealModal(meal){currentModalMeal=meal;const cost=calculateMealCost(meal);const isSelected=selectedMeals[meal.id];const servingsText=getServingsText(meal.servings);document.getElementById('modalImage').src=meal.image;document.getElementById('modalMealName').textContent=meal.name;document.getElementById('modalPrice').textContent=cost;document.getElementById('modalServingsBadge').textContent=meal.servings;document.getElementById('modalServingsText').textContent=meal.servings===1?'person':'people';document.getElementById('modalCalories').textContent=meal.calories;document.getElementById('modalTime').textContent=meal.prepTime;document.getElementById('modalCategory').textContent=meal.category;const ingredientsDiv=document.getElementById('modalRecipeIngredients');ingredientsDiv.innerHTML=meal.ingredients.map(ing=>{const price=ingredientPrices[ing.name]||10;const icons={"Chicken":"fa-drumstick-bite","Pork":"fa-bacon","Beef":"fa-drumstick-bite","Fish":"fa-fish","Rice":"fa-seedling","Egg":"fa-egg","Garlic":"fa-seedling","Onion":"fa-seedling","Tomato":"fa-seedling","Vegetables":"fa-leaf","default":"fa-circle"};return`<div class="recipe-ingredient-item"><div class="recipe-ingredient-name"><div class="recipe-ingredient-icon"><i class="fas ${icons[ing.name]||icons.default}"></i></div>${ing.name}</div><div style="color:var(--text-secondary);font-weight:600">${ing.qty} ${ing.unit} (₱${price*ing.qty})</div></div>`}).join('');const instructionsDiv=document.getElementById('modalInstructions');instructionsDiv.innerHTML=meal.instructions.map((step,index)=>`<div class="instruction-step"><div class="step-number">${index+1}</div><div class="step-text">${step}</div></div>`).join('');document.getElementById('modalSelectText').textContent=isSelected?'Remove from List':'Add to List';document.getElementById('modalSelectBtn').innerHTML=isSelected?'<i class="fas fa-minus"></i> <span>Remove from List</span>':'<i class="fas fa-plus"></i> <span>Add to List</span>';document.getElementById('mealModal').classList.add('show')}
-function closeModal(){document.getElementById('mealModal').classList.remove('show');currentModalMeal=null}
-function toggleMealFromModal(){if(!currentModalMeal)return;const servingsText=getServingsText(currentModalMeal.servings);if(selectedMeals[currentModalMeal.id]){delete selectedMeals[currentModalMeal.id];showNotification(`${currentModalMeal.name} removed (${servingsText})`,"warning");setTimeout(()=>{const{budget,remaining}=getBudgetStatus();if(budget>0){showNotification(`💰 Natitirang budget: ₱${remaining.toLocaleString()}`)}},1500)}else{selectedMeals[currentModalMeal.id]=currentModalMeal;showNotification(`✅ ${currentModalMeal.name} added! (${servingsText})`);setTimeout(showBudgetNotification,800)}updateAllDisplays();closeModal()}
-document.getElementById('budget').addEventListener('input',updateSelectionSummary);document.addEventListener('DOMContentLoaded',()=>{displayAccounts();document.getElementById('mealModal').addEventListener('click',(e)=>{if(e.target.id==='mealModal')closeModal()})});
-</script>
+    <!-- Notification -->
+    <div id="notification" class="hidden">
+        <div id="notification-icon"><i class="fas fa-check"></i></div>
+        <div>
+            <div id="notification-title" style="font-weight:800;margin-bottom:4px">Success</div>
+            <div id="notification-text" style="font-size:.95rem;color:var(--text-secondary)"></div>
+        </div>
+    </div>
+
+    <!-- Login Card -->
+    <div id="loginCard" class="card login">
+        <div class="brand">
+            <div class="brand-icon">🍽️</div>
+            <h1>BudgetSmart Pro</h1>
+            <p class="subtitle">Pick your meals, track your budget, save money</p>
+        </div>
+        <div class="login-tabs">
+            <button id="loginTabBtn" class="active" onclick="showLogin()">
+                <i class="fas fa-sign-in-alt"></i> Sign In
+            </button>
+            <button id="createTabBtn" onclick="showCreate()">
+                <i class="fas fa-user-plus"></i> Create Account
+            </button>
+        </div>
+        <div id="loginForm">
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" id="username" placeholder=" ">
+                <label>Username</label>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" placeholder=" ">
+                <label>Password</label>
+            </div>
+            <button class="btn-primary" onclick="login()">
+                <span>Sign In</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+            <div style="font-weight:800;margin-top:36px;text-align:left;color:var(--text-primary);font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;display:flex;align-items:center;gap:10px">
+                <i class="fas fa-history"></i> Quick Access
+            </div>
+            <div class="saved-accounts-grid" id="savedAccounts"></div>
+        </div>
+        <div id="createForm" class="hidden">
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" id="newUsername" placeholder=" ">
+                <label>Choose Username</label>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="newPassword" placeholder=" ">
+                <label>Create Password</label>
+            </div>
+            <button class="btn-primary" onclick="createAccount()">
+                <span>Create Account</span>
+                <i class="fas fa-user-plus"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main App Card -->
+    <div id="appCard" class="card hidden">
+        <!-- Topbar -->
+        <div class="topbar">
+            <div class="user-info">
+                <div class="user-avatar"><i class="fas fa-user"></i></div>
+                <div id="loggedUser">
+                    <span class="user-greeting">Welcome back,</span>
+                    <span id="userNameDisplay" style="color:var(--primary)">User</span>
+                </div>
+            </div>
+            <div class="topbar-actions">
+                <button class="icon-btn" onclick="logout()" style="color:var(--danger)">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab('planner',this)">
+                <i class="fas fa-utensils"></i> Pick Meals
+            </button>
+            <button class="tab-btn" onclick="openTab('grocery',this)">
+                <i class="fas fa-shopping-basket"></i> Groceries
+            </button>
+            <button class="tab-btn" onclick="openTab('savings',this)">
+                <i class="fas fa-piggy-bank"></i> Savings
+            </button>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content">
+            <!-- Planner Tab -->
+            <div id="planner" class="tab-content active">
+                <div class="planner-header">
+                    <div class="budget-input-group">
+                        <i class="fas fa-peso-sign"></i>
+                        <input type="number" id="budget" placeholder="0" min="0">
+                        <span>Budget</span>
+                    </div>
+                </div>
+                <div id="selectionSummary" class="selection-summary hidden">
+                    <div class="selection-info">
+                        <div class="selection-stat">
+                            <span class="selection-stat-value" id="selectedCount">0</span>
+                            <span style="font-size:.85rem;opacity:.9">Meals Selected</span>
+                        </div>
+                        <div class="selection-stat">
+                            <span class="selection-stat-value">₱<span id="totalCost">0</span></span>
+                            <span style="font-size:.85rem;opacity:.9">Total Cost</span>
+                        </div>
+                        <div class="selection-stat">
+                            <span class="selection-stat-value" id="totalPeople">0</span>
+                            <span style="font-size:.85rem;opacity:.9">Total People</span>
+                        </div>
+                        <div class="selection-stat">
+                            <span class="selection-stat-value">₱<span id="remainingBudget">0</span></span>
+                            <span style="font-size:.85rem;opacity:.9">Remaining</span>
+                        </div>
+                    </div>
+                    <button class="selection-btn" style="background:rgba(239,68,68,0.3)" onclick="clearAllSelections()">
+                        <i class="fas fa-trash"></i> Clear All
+                    </button>
+                </div>
+                <div class="filter-bar">
+                    <button class="filter-btn active" onclick="filterMeals('all',this)">
+                        <i class="fas fa-th-large"></i> All
+                    </button>
+                    <button class="filter-btn" onclick="filterMeals('Protein',this)">
+                        <i class="fas fa-drumstick-bite"></i> Protein
+                    </button>
+                    <button class="filter-btn" onclick="filterMeals('Vegetable',this)">
+                        <i class="fas fa-leaf"></i> Vegetable
+                    </button>
+                    <button class="filter-btn" onclick="filterMeals('Seafood',this)">
+                        <i class="fas fa-fish"></i> Seafood
+                    </button>
+                    <button class="filter-btn" onclick="filterMeals('Breakfast',this)">
+                        <i class="fas fa-egg"></i> Breakfast
+                    </button>
+                    <button class="filter-btn" onclick="filterMeals('Noodles',this)">
+                        <i class="fas fa-utensils"></i> Noodles
+                    </button>
+                </div>
+                <div class="meal-section">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+                        <div class="section-title">
+                            <i class="fas fa-utensils" style="background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent"></i>
+                            Choose Your Meals
+                        </div>
+                        <div style="color:var(--text-secondary);font-size:.95rem;font-weight:500">
+                            <i class="fas fa-info-circle"></i> Click to select meals
+                        </div>
+                    </div>
+                    <div class="meal-grid" id="mealCatalog"></div>
+                </div>
+            </div>
+
+            <!-- Grocery Tab -->
+            <div id="grocery" class="tab-content">
+                <div id="groceryEmpty" class="empty-state">
+                    <div class="empty-state-icon">🛒</div>
+                    <h3>No meals selected yet</h3>
+                    <p>Go to "Pick Meals" tab and select the meals you want to cook. Your shopping list will be generated automatically.</p>
+                </div>
+                <div id="groceryContainer" class="hidden grocery-container">
+                    <div class="grocery-list-card">
+                        <div class="selected-meals-summary">
+                            <div class="selected-meals-title">
+                                <i class="fas fa-utensils"></i> Your Selected Meals (Click to view recipe)
+                            </div>
+                            <div class="selected-meals-list" id="selectedMealsList"></div>
+                        </div>
+                        <div class="grocery-header">
+                            <div class="grocery-title">
+                                <i class="fas fa-clipboard-list"></i> Shopping List
+                            </div>
+                            <div class="grocery-count" id="groceryItemCount">0</div>
+                        </div>
+                        <div id="groceryList"></div>
+                    </div>
+                    <div>
+                        <div class="summary-card">
+                            <div style="font-size:.95rem;opacity:.9;margin-bottom:10px;font-weight:600">Total Estimated Cost</div>
+                            <div class="summary-amount">₱<span id="groceryCost">0</span></div>
+                            <div class="summary-stat">
+                                <span class="summary-stat-label">Meals Selected</span>
+                                <span class="summary-stat-value" id="selectedMealsCount">0</span>
+                            </div>
+                            <div class="summary-stat">
+                                <span class="summary-stat-label">Total Servings</span>
+                                <span class="summary-stat-value" id="totalServings">0</span>
+                            </div>
+                            <div class="summary-stat">
+                                <span class="summary-stat-label">Total People</span>
+                                <span class="summary-stat-value" id="totalPeopleSummary">0</span>
+                            </div>
+                            <div class="summary-stat">
+                                <span class="summary-stat-label">Total Items</span>
+                                <span class="summary-stat-value" id="totalItems">0</span>
+                            </div>
+                            <div class="summary-stat">
+                                <span class="summary-stat-label">Avg. per Person</span>
+                                <span class="summary-stat-value">₱<span id="avgPerPerson">0</span></span>
+                            </div>
+                            <div id="budgetStatus"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Savings Tab -->
+            <div id="savings" class="tab-content">
+                <div id="savingsEmpty" class="empty-state">
+                    <div class="empty-state-icon">💡</div>
+                    <h3>Select meals to see savings</h3>
+                    <p>Choose your meals from the "Pick Meals" tab to see how much you can save compared to eating out.</p>
+                </div>
+                <div id="savingsContainer" class="hidden">
+                    <div style="text-align:center;margin-bottom:36px">
+                        <h2 style="font-size:2rem;font-weight:900;color:var(--text-primary);margin-bottom:10px">💰 Cost Comparison Analysis</h2>
+                        <p style="color:var(--text-secondary);font-size:1.05rem;font-weight:500">See how much you save by cooking at home vs. eating out</p>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card" style="position:relative;overflow:hidden">
+                            <div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--danger)"></div>
+                            <div class="stat-icon" style="background:rgba(239,68,68,0.1);color:var(--danger)">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div style="color:var(--text-secondary);font-size:.95rem;margin-bottom:10px;font-weight:600">Eating Out Cost</div>
+                            <div class="stat-value">₱<span id="eatOut">0</span></div>
+                            <div class="stat-change" style="color:var(--danger)">
+                                <i class="fas fa-receipt"></i> Restaurant prices
+                            </div>
+                        </div>
+                        <div class="stat-card" style="position:relative;overflow:hidden">
+                            <div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--info)"></div>
+                            <div class="stat-icon" style="background:rgba(59,130,246,0.1);color:var(--info)">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div style="color:var(--text-secondary);font-size:.95rem;margin-bottom:10px;font-weight:600">Home Cooking</div>
+                            <div class="stat-value">₱<span id="appCost">0</span></div>
+                            <div class="stat-change">
+                                <i class="fas fa-check"></i> Your selection
+                            </div>
+                        </div>
+                        <div class="stat-card" style="position:relative;overflow:hidden">
+                            <div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--primary)"></div>
+                            <div class="stat-icon">
+                                <i class="fas fa-piggy-bank"></i>
+                            </div>
+                            <div style="color:var(--text-secondary);font-size:.95rem;margin-bottom:10px;font-weight:600">Your Savings</div>
+                            <div class="stat-value">₱<span id="savingsValue">0</span></div>
+                            <div class="stat-change">
+                                <i class="fas fa-arrow-down"></i> Money saved
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <div class="chart-title">
+                            <i class="fas fa-chart-bar"></i> Visual Comparison
+                        </div>
+                        <div class="comparison-bar">
+                            <div class="comparison-label">
+                                <span>Eating Out (₱150/meal average)</span>
+                                <span id="eatOutPercent">0%</span>
+                            </div>
+                            <div class="comparison-track">
+                                <div class="comparison-fill fill-eatout" id="eatOutBar" style="width:0%">
+                                    ₱<span id="eatOutBarValue">0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comparison-bar">
+                            <div class="comparison-label">
+                                <span>Home Cooking (Your Selection)</span>
+                                <span id="homePercent">0%</span>
+                            </div>
+                            <div class="comparison-track">
+                                <div class="comparison-fill fill-home" id="homeBar" style="width:0%">
+                                    ₱<span id="homeBarValue">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="savings-highlight">
+                        <div class="savings-amount">₱<span id="monthlySavings">0</span></div>
+                        <div style="color:var(--text-secondary);font-size:1.1rem;margin-bottom:20px;font-weight:500">
+                            Estimated monthly savings if you stick to this plan
+                        </div>
+                        <div class="savings-badge">
+                            <i class="fas fa-trophy"></i> Save <span id="savingsPercent">0</span>% vs eating out
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Meal Modal -->
+    <div class="modal-overlay" id="mealModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <img class="modal-image" id="modalImage" src="" alt="">
+            <div class="modal-content">
+                <div class="modal-title">
+                    <span id="modalMealName">Meal Name</span>
+                    <span class="modal-price">₱<span id="modalPrice">0</span></span>
+                </div>
+                <div class="servings-badge-large">
+                    <i class="fas fa-users"></i>
+                    <span>Good for <span id="modalServingsBadge">2</span> <span id="modalServingsText">people</span></span>
+                </div>
+                <div class="modal-stats">
+                    <div class="modal-stat">
+                        <div class="modal-stat-icon"><i class="fas fa-fire"></i></div>
+                        <div class="modal-stat-value" id="modalCalories">0</div>
+                        <div class="modal-stat-label">Calories</div>
+                    </div>
+                    <div class="modal-stat">
+                        <div class="modal-stat-icon"><i class="fas fa-clock"></i></div>
+                        <div class="modal-stat-value" id="modalTime">30</div>
+                        <div class="modal-stat-label">Minutes</div>
+                    </div>
+                    <div class="modal-stat">
+                        <div class="modal-stat-icon"><i class="fas fa-layer-group"></i></div>
+                        <div class="modal-stat-value" id="modalCategory">Protein</div>
+                        <div class="modal-stat-label">Category</div>
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <div style="font-weight:800;color:var(--text-primary);margin-bottom:14px;display:flex;align-items:center;gap:10px;font-size:1.1rem">
+                        <i class="fas fa-list-check" style="color:var(--primary)"></i> Recipe Ingredients
+                    </div>
+                    <div class="recipe-ingredients-list" id="modalRecipeIngredients"></div>
+                </div>
+                <div class="modal-section">
+                    <div style="font-weight:800;color:var(--text-primary);margin-bottom:14px;display:flex;align-items:center;gap:10px;font-size:1.1rem">
+                        <i class="fas fa-fire-burner" style="color:var(--accent)"></i> Cooking Instructions
+                    </div>
+                    <div class="cooking-instructions" id="modalInstructions"></div>
+                </div>
+                <div class="modal-actions">
+                    <button class="modal-btn secondary" onclick="closeModal()">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                    <button class="modal-btn primary" id="modalSelectBtn" onclick="toggleMealFromModal()">
+                        <i class="fas fa-plus"></i> <span id="modalSelectText">Add to List</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // DATA: INGREDIENT PRICES
+        // ==========================================
+        const ingredientPrices = {
+            Chicken: 45, Pork: 55, Beef: 85, "Ground Pork": 50, Fish: 60,
+            "Beef Tapa": 75, Bangus: 70, Papaya: 25, Malunggay: 15,
+            Vegetables: 35, "Mixed Vegetables": 30, Tomato: 12, Onion: 10,
+            Garlic: 8, Ginger: 8, Potato: 15, Calamansi: 6, "Bell Pepper": 15,
+            Carrot: 12, Cabbage: 25, Spinach: 20, Rice: 12, "Soy Sauce": 5,
+            Vinegar: 5, "Cooking Oil": 8, "Coconut Milk": 30, "Fish Sauce": 5,
+            "Oyster Sauce": 10, Noodles: 18, Wrapper: 15, Egg: 10, Butter: 15,
+            Salt: 2, Pepper: 3, Sugar: 5
+        };
+
+        // ==========================================
+        // DATA: MEALS DATABASE
+        // ==========================================
+        const meals = [
+            {
+                id: 1,
+                name: "Chicken Adobo",
+                ingredients: [
+                    { name: "Chicken", qty: 1, unit: "250g" },
+                    { name: "Soy Sauce", qty: 3, unit: "tbsp" },
+                    { name: "Vinegar", qty: 2, unit: "tbsp" },
+                    { name: "Garlic", qty: 1, unit: "head" },
+                    { name: "Onion", qty: 1, unit: "piece" },
+                    { name: "Rice", qty: 1, unit: "cup" }
+                ],
+                calories: 380,
+                prepTime: 35,
+                servings: 2,
+                image: "https://www.recipetineats.com/uploads/2015/02/Filipino-Chicken-Adobo_6.jpg",
+                category: "Protein",
+                instructions: [
+                    "Marinate chicken in soy sauce and vinegar for 15 mins",
+                    "Sauté garlic and onion until fragrant",
+                    "Add chicken and sear until brown",
+                    "Pour marinade and simmer for 30 mins",
+                    "Serve hot with steamed rice"
+                ]
+            },
+            {
+                id: 2,
+                name: "Tinolang Manok",
+                ingredients: [
+                    { name: "Chicken", qty: 1, unit: "250g" },
+                    { name: "Papaya", qty: 0.5, unit: "piece" },
+                    { name: "Malunggay", qty: 1, unit: "bundle" },
+                    { name: "Ginger", qty: 1, unit: "piece" },
+                    { name: "Onion", qty: 1, unit: "piece" },
+                    { name: "Rice", qty: 1, unit: "cup" }
+                ],
+                calories: 320,
+                prepTime: 40,
+                servings: 2,
+                image: "https://images.yummy.ph/yummy/uploads/2015/06/tinolang-manok-640-1.jpg",
+                category: "Protein",
+                instructions: [
+                    "Sauté ginger, onion until fragrant",
+                    "Add chicken and cook until white",
+                    "Add water and simmer for 20 mins",
+                    "Add papaya and cook until tender",
+                    "Add malunggay leaves and serve"
+                ]
+            },
+            {
+                id: 3,
+                name: "Sinigang na Baboy",
+                ingredients: [
+                    { name: "Pork", qty: 1, unit: "200g" },
+                    { name: "Vegetables", qty: 1, unit: "mix" },
+                    { name: "Tomato", qty: 2, unit: "pieces" },
+                    { name: "Onion", qty: 1, unit: "piece" },
+                    { name: "Fish Sauce", qty: 1, unit: "tbsp" },
+                    { name: "Rice", qty: 1, unit: "cup" }
+                ],
+                calories: 420,
+                prepTime: 45,
+                servings: 2,
+                image: "https://jayjs.com/cdn/shop/products/Sinigang_na_Baboy.jpg?v=1747282310",
+                category: "Protein",
+                instructions: [
+                    "Boil pork in water with tomato and onion",
+                    "Simmer until pork is tender (30 mins)",
+                    "Add vegetables and cook for 10 mins",
+                    "Season with fish sauce",
+                    "Serve hot with rice"
+                ]
+            },
+            {
+                id: 4,
+                name: "Tapsilog",
+                ingredients: [
+                    { name: "Beef Tapa", qty: 1, unit: "150g" },
+                    { name: "Egg", qty: 1, unit: "piece" },
+                    { name: "Rice", qty: 1, unit: "cup" },
+                    { name: "Garlic", qty: 0.5, unit: "head" },
+                    { name: "Vinegar", qty: 1, unit: "tbsp" }
+                ],
+                calories: 580,
+                prepTime: 25,
+                servings: 1,
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnc6SCDUlcRJpEaMz_CX_o_VUWXVQMXqEUtQ&s",
+                category: "Breakfast",
+                instructions: [
+                    "Marinate beef in vinegar, garlic overnight",
+                    "Fry beef until caramelized",
+                    "Fry egg sunny side up",
+                    "Serve with garlic fried rice"
+                ]
+            },
+            {
+                id: 5,
+                name: "Pancit Canton",
+                ingredients: [
+                    { name: "Noodles", qty: 1, unit: "pack" },
+                    { name: "Vegetables", qty: 1, unit: "mix" },
+                    { name: "Pork", qty: 0.5, unit: "100g" },
+                    { name: "Soy Sauce", qty: 2, unit: "tbsp" },
+                    { name: "Garlic", qty: 0.5, unit: "head" }
+                ],
+                calories: 350,
+                prepTime: 20,
+                servings: 2,
+                image: "https://panlasangpinoy.com/wp-content/uploads/2019/03/pancit-canton-with-shrimp.jpg",
+                category: "Noodles",
+                instructions: [
+                    "Sauté garlic and pork until cooked",
+                    "Add vegetables and stir fry",
+                    "Add noodles and soy sauce",
+                    "Toss until well combined",
+                    "Serve immediately"
+                ]
+            },
+            {
+                id: 6,
+                name: "Lumpiang Shanghai",
+                ingredients: [
+                    { name: "Ground Pork", qty: 1, unit: "200g" },
+                    { name: "Wrapper", qty: 1, unit: "pack" },
+                    { name: "Onion", qty: 0.5, unit: "piece" },
+                    { name: "Garlic", qty: 0.5, unit: "head" },
+                    { name: "Carrot", qty: 1, unit: "piece" }
+                ],
+                calories: 380,
+                prepTime: 35,
+                servings: 2,
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu4t2W4f5WY6_zMta8qBigAi1yp_seR3ZxZA&s",
+                category: "Protein",
+                instructions: [
+                    "Mix ground pork with minced vegetables",
+                    "Wrap in lumpia wrappers",
+                    "Deep fry until golden brown",
+                    "Drain excess oil",
+                    "Serve with vinegar dip"
+                ]
+            },
+            {
+                id: 7,
+                name: "Ginisang Gulay",
+                ingredients: [
+                    { name: "Mixed Vegetables", qty: 1, unit: "mix" },
+                    { name: "Garlic", qty: 0.5, unit: "head" },
+                    { name: "Onion", qty: 0.5, unit: "piece" },
+                    { name: "Tomato", qty: 1, unit: "piece" },
+                    { name: "Rice", qty: 1, unit: "cup" }
+                ],
+                calories: 220,
+                prepTime: 15,
+                servings: 2,
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN-D6bGBJ06KK2DEWxOKH5Z7DECk8PKnznHw&s",
+                category: "Vegetable",
+                instructions: [
+                    "Sauté garlic, onion and tomato",
+                    "Add mixed vegetables",
+                    "Stir fry for 5-7 minutes",
+                    "Season with salt and pepper",
+                    "Serve with steamed rice"
+                ]
+            },
+            {
+                id: 8,
+                name: "Beef Steak Tagalog",
+                ingredients: [
+                    { name: "Beef", qty: 1, unit: "200g" },
+                    { name: "Onion", qty: 1, unit: "piece" },
+                    { name: "Soy Sauce", qty: 3, unit: "tbsp" },
+                    { name: "Calamansi", qty: 3, unit: "pieces" },
+                    { name: "Garlic", qty: 0.5, unit: "head" },
+                    { name: "Rice", qty: 1, unit: "cup" }
+                ],
+                calories: 480,
+                prepTime: 40,
+                servings: 2,
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAlikc3SichpJjTpNUFvoHyW8si4xFZb_QPg&s",
+                category: "Protein",
+                instructions: [
+                    "Marinate beef in soy sauce, calamansi, garlic",
+                    "Pan fry beef until browned",
+                    "Add onions and cook until soft",
+                    "Pour marinade and simmer",
+                    "Serve with rice"
+                ]
+            },
+            {
+                id: 9,
+                name: "Bangus Sisig",
+                ingredients: [
+                    { name: "Bangus", qty: 1, unit: "piece" },
+                    { name: "Onion", qty: 1, unit: "piece" },
+                    { name: "Garlic", qty: 0.5, unit: "head" },
+                    { name: "Egg", qty: 1, unit: "piece" },
+                    { name: "Calamansi", qty: 2, unit: "pieces" },
+                    { name: "Rice", qty: 1, unit: "cup" }
+                ],
+                calories: 340,
+                prepTime: 30,
+                servings: 2,
+                image: "https://pilipinasrecipes.com/wp-content/uploads/2018/01/Bangus-Sisig-Recipe.jpg",
+                category: "Seafood",
+                instructions: [
+                    "Grill bangus until cooked",
+                    "Flake the fish meat",
+                    "Sauté garlic and onion",
+                    "Add fish and calamansi",
+                    "Top with fried egg, serve"
+                ]
+            },
+            {
+                id: 10,
+                name: "Pinakbet",
+                ingredients: [
+                    { name: "Mixed Vegetables", qty: 1, unit: "mix" },
+                    { name: "Pork", qty: 0.5, unit: "100g" },
+                    { name: "Fish Sauce", qty: 2, unit: "tbsp" },
+                    { name: "Garlic", qty: 0.5, unit: "head" },
+                    { name: "Onion", qty: 0.5, unit: "piece" },
+                    { name: "Tomato", qty: 1, unit: "piece" }
+                ],
+                calories: 250,
+                prepTime: 25,
+                servings: 2,
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbKBP5tPrQGBhXVuI373TpRHlVS1rFPNJaPw&s",
+                category: "Vegetable",
+                instructions: [
+                    "Sauté garlic, onion, tomato",
+                    "Add pork and cook until brown",
+                    "Add vegetables and fish sauce",
+                    "Simmer until vegetables are tender",
+                    "Serve hot"
+                ]
+            },
+            {
+                id: 11,
+                name: "Chicken Tinola",
+                ingredients: [
+                    { name: "Chicken", qty: 1, unit: "250g" },
+                    { name: "Papaya", qty: 0.5, unit: "piece" },
+                    { name: "Malunggay", qty: 1, unit: "bundle" },
+                    { name: "Ginger", qty: 1, unit: "piece" },
+                    { name: "Onion", qty: 1, unit: "piece" },
+                    { name: "Rice", qty: 1, unit: "cup" }
+                ],
+                calories: 310,
+                prepTime: 35,
+                servings: 2,
+                image: "https://images.yummy.ph/yummy/uploads/2015/06/tinolang-manok-640-1.jpg",
+                category: "Protein",
+                instructions: [
+                    "Sauté ginger and onion",
+                    "Add chicken pieces and cook",
+                    "Pour water and simmer 20 mins",
+                    "Add papaya chunks",
+                    "Add malunggay before serving"
+                ]
+            },
+            {
+                id: 12,
+                name: "Pork Menudo",
+                ingredients: [
+                    { name: "Pork", qty: 1, unit: "200g" },
+                    { name: "Potato", qty: 1, unit: "piece" },
+                    { name: "Carrot", qty: 1, unit: "piece" },
+                    { name: "Tomato", qty: 1, unit: "piece" },
+                    { name: "Garlic", qty: 0.5, unit: "head" },
+                    { name: "Rice", qty: 1, unit: "cup" }
+                ],
+                calories: 400,
+                prepTime: 45,
+                servings: 2,
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm5QAHOP3VKA5Q_20NbquianHtpU3MfSxaEg&s",
+                category: "Protein",
+                instructions: [
+                    "Sauté garlic and tomato",
+                    "Add pork and cook until brown",
+                    "Add tomato sauce and simmer",
+                    "Add potato and carrot",
+                    "Cook until vegetables are tender"
+                ]
+            }
+        ];
+
+        // ==========================================
+        // STATE MANAGEMENT
+        // ==========================================
+        let accounts = JSON.parse(localStorage.getItem("accounts") || "[]");
+        
+        // Add default account if none exists
+        if (!accounts.find(a => a.username === "Gabo")) {
+            accounts.push({ username: "Gabo", password: "Gabondat" });
+            localStorage.setItem("accounts", JSON.stringify(accounts));
+        }
+
+        let selectedMeals = {};
+        let currentModalMeal = null;
+        let currentFilter = 'all';
+
+        // ==========================================
+        // NOTIFICATION SYSTEM
+        // ==========================================
+        function showNotification(message, type = "success") {
+            const notif = document.getElementById("notification");
+            const icon = document.getElementById("notification-icon");
+            const title = document.getElementById("notification-title");
+            const text = document.getElementById("notification-text");
+            
+            text.innerText = message;
+            
+            const icons = {
+                success: 'fa-check',
+                error: 'fa-exclamation-circle',
+                warning: 'fa-exclamation-triangle',
+                info: 'fa-info-circle'
+            };
+            
+            const titles = {
+                success: 'Success',
+                error: 'Error',
+                warning: 'Warning',
+                info: 'Info'
+            };
+            
+            icon.innerHTML = `<i class="fas ${icons[type]}"></i>`;
+            title.innerText = titles[type];
+            
+            notif.className = "";
+            if (type !== "success") notif.classList.add(type);
+            
+            void notif.offsetWidth;
+            notif.classList.add("show");
+            
+            setTimeout(() => {
+                notif.classList.remove("show");
+            }, 4000);
+        }
+
+        // ==========================================
+        // AUTHENTICATION
+        // ==========================================
+        function showLogin() {
+            document.getElementById('loginForm').classList.remove("hidden");
+            document.getElementById('createForm').classList.add("hidden");
+            document.getElementById('loginTabBtn').classList.add("active");
+            document.getElementById('createTabBtn').classList.remove("active");
+        }
+
+        function showCreate() {
+            document.getElementById('loginForm').classList.add("hidden");
+            document.getElementById('createForm').classList.remove("hidden");
+            document.getElementById('loginTabBtn').classList.remove("active");
+            document.getElementById('createTabBtn').classList.add("active");
+        }
+
+        function displayAccounts() {
+            const div = document.getElementById("savedAccounts");
+            div.innerHTML = "";
+            
+            if (accounts.length === 0) {
+                div.innerHTML = '<p style="color:var(--text-secondary);font-size:.95rem;grid-column:1/-1;text-align:center;padding:24px">No saved accounts yet</p>';
+                return;
+            }
+            
+            accounts.forEach((acc, index) => {
+                const wrapper = document.createElement("div");
+                wrapper.className = "saved-account";
+                wrapper.onclick = (e) => {
+                    if (!e.target.closest('.delete-btn')) {
+                        document.getElementById('username').value = acc.username;
+                        document.getElementById('password').value = acc.password;
+                        login();
+                    }
+                };
+                
+                const avatar = document.createElement("div");
+                avatar.className = "saved-account-avatar";
+                avatar.innerText = acc.username.charAt(0).toUpperCase();
+                
+                const info = document.createElement("div");
+                info.style.flex = "1";
+                info.style.textAlign = "left";
+                info.innerHTML = `
+                    <div style="font-weight:700;color:var(--text-primary);font-size:.95rem">${acc.username}</div>
+                    <div style="font-size:.75rem;color:var(--text-secondary)">Click to login</div>
+                `;
+                
+                const delBtn = document.createElement("button");
+                delBtn.className = "delete-btn";
+                delBtn.innerHTML = '<i class="fas fa-times"></i>';
+                delBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    if (confirm(`Delete account "${acc.username}"?`)) {
+                        accounts.splice(index, 1);
+                        localStorage.setItem("accounts", JSON.stringify(accounts));
+                        displayAccounts();
+                        showNotification("Account deleted successfully", "warning");
+                    }
+                };
+                
+                wrapper.appendChild(avatar);
+                wrapper.appendChild(info);
+                wrapper.appendChild(delBtn);
+                div.appendChild(wrapper);
+            });
+        }
+
+        function createAccount() {
+            const u = document.getElementById('newUsername').value.trim();
+            const p = document.getElementById('newPassword').value.trim();
+            
+            if (!u || !p) {
+                showNotification("Please fill in all fields", "error");
+                return;
+            }
+            
+            if (accounts.find(a => a.username === u)) {
+                showNotification("Username already exists", "error");
+                return;
+            }
+            
+            accounts.push({ username: u, password: p });
+            localStorage.setItem("accounts", JSON.stringify(accounts));
+            displayAccounts();
+            showLogin();
+            showNotification("Account created successfully! Please sign in.");
+            
+            document.getElementById('newUsername').value = "";
+            document.getElementById('newPassword').value = "";
+        }
+
+        function login() {
+            const u = document.getElementById('username').value.trim();
+            const p = document.getElementById('password').value.trim();
+            
+            const acc = accounts.find(a => a.username === u && a.password === p);
+            
+            if (acc) {
+                document.getElementById('loginCard').classList.add("hidden");
+                document.getElementById('appCard').classList.remove("hidden");
+                document.getElementById('userNameDisplay').innerText = acc.username;
+                showNotification(`Welcome back, ${acc.username}! Start picking your meals.`);
+                renderMealCatalog();
+            } else {
+                showNotification("Invalid username or password", "error");
+            }
+        }
+
+        function logout() {
+            document.getElementById('appCard').classList.add("hidden");
+            document.getElementById('loginCard').classList.remove("hidden");
+            document.getElementById('password').value = "";
+            selectedMeals = {};
+            resetDisplays();
+        }
+
+        function resetDisplays() {
+            document.getElementById('selectionSummary').classList.add('hidden');
+            document.getElementById('groceryEmpty').classList.remove('hidden');
+            document.getElementById('groceryContainer').classList.add('hidden');
+            document.getElementById('savingsEmpty').classList.remove('hidden');
+            document.getElementById('savingsContainer').classList.add('hidden');
+        }
+
+        // ==========================================
+        // NAVIGATION
+        // ==========================================
+        function openTab(id, btn) {
+            document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
+            document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+            document.getElementById(id).classList.add("active");
+            btn.classList.add("active");
+        }
+
+        // ==========================================
+        // CALCULATIONS
+        // ==========================================
+        function calculateMealCost(meal) {
+            let total = 0;
+            meal.ingredients.forEach(ing => {
+                const price = ingredientPrices[ing.name] || 10;
+                total += price * ing.qty;
+            });
+            return Math.round(total);
+        }
+
+        function getServingsText(servings) {
+            if (servings === 1) return "1 person";
+            return `${servings} people`;
+        }
+
+        function getBudgetStatus() {
+            const budgetValue = Number(document.getElementById('budget').value) || 0;
+            let totalCost = 0;
+            
+            Object.values(selectedMeals).forEach(m => {
+                totalCost += calculateMealCost(m);
+            });
+            
+            return {
+                budget: budgetValue,
+                totalCost: totalCost,
+                remaining: budgetValue - totalCost
+            };
+        }
+
+        function showBudgetNotification() {
+            const { budget, totalCost, remaining } = getBudgetStatus();
+            
+            if (budget === 0) return;
+            
+            if (remaining < 0) {
+                showNotification(`⚠️ Over budget! Kulang ka ng ₱${Math.abs(remaining).toLocaleString()}`, "error");
+            } else if (remaining === 0) {
+                showNotification(`💰 Sakto sa budget! ₱0 na lang natitira`, "warning");
+            } else if (remaining <= budget * 0.2) {
+                showNotification(`⚡ Konting budget na lang! ₱${remaining.toLocaleString()} na lang natitira (20%)`, "warning");
+            } else {
+                showNotification(`✅ May ₱${remaining.toLocaleString()} pa sa budget mo`);
+            }
+            
+            setTimeout(() => {
+                showNotification(`📊 Gastos: ₱${totalCost.toLocaleString()} / ₱${budget.toLocaleString()}`);
+            }, 2200);
+        }
+
+        // ==========================================
+        // MEAL CATALOG
+        // ==========================================
+        function renderMealCatalog() {
+            const catalogDiv = document.getElementById("mealCatalog");
+            catalogDiv.innerHTML = "";
+            
+            const filteredMeals = currentFilter === 'all' 
+                ? meals 
+                : meals.filter(m => m.category === currentFilter);
+            
+            filteredMeals.forEach(meal => {
+                const cost = calculateMealCost(meal);
+                const isSelected = selectedMeals[meal.id];
+                const servingsText = getServingsText(meal.servings);
+                
+                const mealEl = document.createElement('div');
+                mealEl.className = `meal-card ${isSelected ? 'selected' : ''}`;
+                mealEl.innerHTML = `
+                    <div class="meal-select-badge"><i class="fas fa-check"></i></div>
+                    <div class="meal-image">
+                        <img src="${meal.image}" alt="${meal.name}" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400'">
+                        <div class="meal-overlay"><i class="fas fa-peso-sign"></i> ${cost}</div>
+                        <div class="servings-badge"><i class="fas fa-users"></i> ${servingsText}</div>
+                        <div class="meal-category-badge">${meal.category}</div>
+                    </div>
+                    <div class="meal-content">
+                        <div class="meal-name">${meal.name}</div>
+                        <div class="meal-meta">
+                            <div class="meal-meta-item"><i class="fas fa-fire"></i> ${meal.calories} cal</div>
+                            <div class="meal-meta-item"><i class="fas fa-clock"></i> ${meal.prepTime} min</div>
+                            <div class="meal-meta-item"><i class="fas fa-utensils"></i> ${meal.ingredients.length} items</div>
+                        </div>
+                        <div class="meal-ingredients">
+                            ${meal.ingredients.slice(0, 3).map(ing => `<span class="ingredient-tag">${ing.name}</span>`).join('')}
+                            ${meal.ingredients.length > 3 ? `<span class="ingredient-tag">+${meal.ingredients.length - 3}</span>` : ''}
+                        </div>
+                    </div>
+                `;
+                
+                mealEl.onclick = () => toggleMealSelection(meal);
+                catalogDiv.appendChild(mealEl);
+            });
+        }
+
+        function filterMeals(category, btn) {
+            currentFilter = category;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderMealCatalog();
+        }
+
+        function toggleMealSelection(meal) {
+            const cost = calculateMealCost(meal);
+            const servingsText = getServingsText(meal.servings);
+            
+            if (selectedMeals[meal.id]) {
+                delete selectedMeals[meal.id];
+                showNotification(`${meal.name} removed (${servingsText})`, "warning");
+                setTimeout(() => {
+                    const { budget, remaining } = getBudgetStatus();
+                    if (budget > 0) {
+                        showNotification(`💰 Natitirang budget: ₱${remaining.toLocaleString()}`);
+                    }
+                }, 1500);
+            } else {
+                selectedMeals[meal.id] = meal;
+                showNotification(`✅ ${meal.name} added! (${servingsText}) - ₱${cost}`);
+                setTimeout(showBudgetNotification, 800);
+            }
+            
+            updateAllDisplays();
+        }
+
+        function clearAllSelections() {
+            if (Object.keys(selectedMeals).length === 0) return;
+            
+            if (confirm('Are you sure you want to clear all selected meals?')) {
+                selectedMeals = {};
+                updateAllDisplays();
+                showNotification("All meals cleared", "warning");
+            }
+        }
+
+        function updateAllDisplays() {
+            renderMealCatalog();
+            updateSelectionSummary();
+            calculateGroceries();
+            calculateSavings();
+            
+            const hasSelections = Object.keys(selectedMeals).length > 0;
+            
+            document.getElementById('selectionSummary').classList.toggle('hidden', !hasSelections);
+            document.getElementById('groceryEmpty').classList.toggle('hidden', hasSelections);
+            document.getElementById('groceryContainer').classList.toggle('hidden', !hasSelections);
+            document.getElementById('savingsEmpty').classList.toggle('hidden', hasSelections);
+            document.getElementById('savingsContainer').classList.toggle('hidden', !hasSelections);
+        }
+
+        function updateSelectionSummary() {
+            const budgetValue = Number(document.getElementById('budget').value) || 0;
+            let totalMeals = Object.keys(selectedMeals).length;
+            let totalCost = 0;
+            let totalPeople = 0;
+            
+            Object.values(selectedMeals).forEach(meal => {
+                totalCost += calculateMealCost(meal);
+                totalPeople += meal.servings;
+            });
+            
+            const remaining = budgetValue - totalCost;
+            
+            document.getElementById('selectedCount').textContent = totalMeals;
+            document.getElementById('totalCost').textContent = totalCost.toLocaleString();
+            document.getElementById('totalPeople').textContent = totalPeople;
+            document.getElementById('remainingBudget').textContent = remaining.toLocaleString();
+        }
+
+        // ==========================================
+        // GROCERY LIST (FIXED - CLICKABLE MEALS)
+        // ==========================================
+        function calculateGroceries() {
+            const budgetValue = Number(document.getElementById('budget').value) || 0;
+            const ingredientMap = {};
+            let totalServings = 0;
+            let totalCost = 0;
+            let totalPeople = 0;
+            
+            Object.values(selectedMeals).forEach(meal => {
+                totalServings += meal.servings;
+                totalPeople += meal.servings;
+                totalCost += calculateMealCost(meal);
+                
+                meal.ingredients.forEach(ing => {
+                    const key = ing.name;
+                    if (!ingredientMap[key]) {
+                        ingredientMap[key] = {
+                            name: ing.name,
+                            totalQty: 0,
+                            unit: ing.unit,
+                            price: ingredientPrices[ing.name] || 10
+                        };
+                    }
+                    ingredientMap[key].totalQty += ing.qty;
+                });
+            });
+
+            // FIXED: Render clickable meal tags using createElement
+            const selectedMealsListDiv = document.getElementById("selectedMealsList");
+            selectedMealsListDiv.innerHTML = "";
+            
+            Object.values(selectedMeals).forEach(meal => {
+                const servingsText = getServingsText(meal.servings);
+                const tag = document.createElement('span');
+                tag.className = 'selected-meal-tag';
+                tag.innerHTML = meal.name + '<span class="servings-hint">' + servingsText + '</span>';
+                tag.onclick = function() {
+                    openMealModal(meal);
+                };
+                selectedMealsListDiv.appendChild(tag);
+            });
+
+            // Categorize ingredients
+            const categories = {
+                'Proteins': ['Chicken', 'Pork', 'Beef', 'Ground Pork', 'Fish', 'Bangus', 'Beef Tapa'],
+                'Vegetables': ['Papaya', 'Malunggay', 'Vegetables', 'Mixed Vegetables', 'Tomato', 'Onion', 'Garlic', 'Ginger', 'Potato', 'Calamansi', 'Bell Pepper', 'Carrot', 'Cabbage', 'Spinach'],
+                'Pantry': ['Rice', 'Soy Sauce', 'Vinegar', 'Cooking Oil', 'Coconut Milk', 'Fish Sauce', 'Oyster Sauce', 'Noodles', 'Wrapper', 'Salt', 'Pepper', 'Sugar'],
+                'Dairy & Eggs': ['Egg', 'Butter']
+            };
+
+            const getCategory = (ingName) => {
+                for (const [cat, items] of Object.entries(categories)) {
+                    if (items.includes(ingName)) return cat;
+                }
+                return 'Other';
+            };
+
+            const categorized = {};
+            Object.values(ingredientMap).forEach(item => {
+                const cat = getCategory(item.name);
+                if (!categorized[cat]) categorized[cat] = [];
+                categorized[cat].push(item);
+            });
+
+            let totalGroceryCost = 0;
+            let itemCount = 0;
+            
+            const icons = {
+                "Chicken": "fa-drumstick-bite",
+                "Pork": "fa-bacon",
+                "Beef": "fa-drumstick-bite",
+                "Fish": "fa-fish",
+                "Bangus": "fa-fish",
+                "Rice": "fa-seedling",
+                "Egg": "fa-egg",
+                "Garlic": "fa-seedling",
+                "Onion": "fa-seedling",
+                "Tomato": "fa-seedling",
+                "Vegetables": "fa-leaf",
+                "Mixed Vegetables": "fa-leaf",
+                "Papaya": "fa-apple-alt",
+                "Noodles": "fa-utensils",
+                "Wrapper": "fa-box",
+                "default": "fa-shopping-basket"
+            };
+
+            const groceryListDiv = document.getElementById("groceryList");
+            groceryListDiv.innerHTML = "";
+
+            Object.entries(categorized).forEach(([category, items]) => {
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'grocery-category';
+                categoryDiv.innerHTML = `<div class="grocery-category-title"><i class="fas fa-folder"></i> ${category}</div>`;
+                
+                items.sort((a, b) => a.name.localeCompare(b.name)).forEach(item => {
+                    const subtotal = Math.round(item.price * item.totalQty);
+                    totalGroceryCost += subtotal;
+                    itemCount += Math.ceil(item.totalQty);
+                    
+                    const iconClass = icons[item.name] || icons.default;
+                    
+                    const itemEl = document.createElement('div');
+                    itemEl.className = 'grocery-item';
+                    itemEl.innerHTML = `
+                        <div class="grocery-info">
+                            <div class="grocery-icon"><i class="fas ${iconClass}"></i></div>
+                            <div>
+                                <div class="grocery-name">${item.name}</div>
+                                <div class="grocery-qty">${Math.ceil(item.totalQty)} × ₱${item.price} each</div>
+                            </div>
+                        </div>
+                        <div class="grocery-price">₱${subtotal}</div>
+                    `;
+                    categoryDiv.appendChild(itemEl);
+                });
+                
+                groceryListDiv.appendChild(categoryDiv);
+            });
+
+            // Update summary
+            document.getElementById("groceryCost").innerText = totalGroceryCost.toLocaleString();
+            document.getElementById("groceryItemCount").innerText = Object.keys(ingredientMap).length;
+            document.getElementById("totalItems").innerText = itemCount;
+            document.getElementById("selectedMealsCount").innerText = Object.keys(selectedMeals).length;
+            document.getElementById("totalServings").innerText = totalServings;
+            document.getElementById("totalPeopleSummary").innerText = totalPeople;
+            document.getElementById("avgPerPerson").innerText = totalPeople > 0 ? Math.round(totalGroceryCost / totalPeople) : 0;
+
+            // Budget status
+            const budgetStatus = document.getElementById("budgetStatus");
+            const remaining = budgetValue - totalGroceryCost;
+            
+            if (budgetValue > 0) {
+                if (remaining < 0) {
+                    budgetStatus.innerHTML = `<div class="budget-warning"><i class="fas fa-exclamation-triangle"></i><span>Over budget by ₱${Math.abs(remaining).toLocaleString()}</span></div>`;
+                } else {
+                    budgetStatus.innerHTML = `<div class="budget-warning budget-ok"><i class="fas fa-check-circle"></i><span>Within budget! ₱${remaining.toLocaleString()} remaining</span></div>`;
+                }
+            } else {
+                budgetStatus.innerHTML = '';
+            }
+        }
+
+        // ==========================================
+        // SAVINGS CALCULATION
+        // ==========================================
+        function calculateSavings() {
+            const totalMeals = Object.keys(selectedMeals).length;
+            let totalCost = 0;
+            let totalPeople = 0;
+            
+            Object.values(selectedMeals).forEach(meal => {
+                totalCost += calculateMealCost(meal);
+                totalPeople += meal.servings;
+            });
+
+            const eatOutCostPerMeal = 150;
+            const eatOutCost = totalPeople * eatOutCostPerMeal;
+            const savings = eatOutCost - totalCost;
+
+            document.getElementById("eatOut").innerText = eatOutCost.toLocaleString();
+            document.getElementById("appCost").innerText = totalCost.toLocaleString();
+            document.getElementById("savingsValue").innerText = savings.toLocaleString();
+            
+            const savingsPercent = eatOutCost > 0 ? Math.round((savings / eatOutCost) * 100) : 0;
+            document.getElementById("savingsPercent").innerText = savingsPercent;
+            document.getElementById("monthlySavings").innerText = (savings * 4).toLocaleString();
+
+            // Animate bars
+            setTimeout(() => {
+                const maxVal = Math.max(eatOutCost, totalCost, 1);
+                const eatOutWidth = (eatOutCost / maxVal) * 100;
+                const homeWidth = (totalCost / maxVal) * 100;
+                
+                document.getElementById('eatOutBar').style.width = eatOutWidth + '%';
+                document.getElementById('eatOutBarValue').innerText = eatOutCost.toLocaleString();
+                document.getElementById('homeBar').style.width = homeWidth + '%';
+                document.getElementById('homeBarValue').innerText = totalCost.toLocaleString();
+                document.getElementById('eatOutPercent').innerText = '100%';
+                document.getElementById('homePercent').innerText = eatOutCost > 0 ? Math.round((totalCost / eatOutCost) * 100) + '%' : '0%';
+            }, 100);
+        }
+
+        // ==========================================
+        // MODAL FUNCTIONS
+        // ==========================================
+        function openMealModalById(mealId) {
+            const meal = meals.find(m => m.id === mealId);
+            if (meal) openMealModal(meal);
+        }
+
+        function openMealModal(meal) {
+            currentModalMeal = meal;
+            const cost = calculateMealCost(meal);
+            const isSelected = selectedMeals[meal.id];
+            const servingsText = getServingsText(meal.servings);
+
+            document.getElementById('modalImage').src = meal.image;
+            document.getElementById('modalMealName').textContent = meal.name;
+            document.getElementById('modalPrice').textContent = cost;
+            document.getElementById('modalServingsBadge').textContent = meal.servings;
+            document.getElementById('modalServingsText').textContent = meal.servings === 1 ? 'person' : 'people';
+            document.getElementById('modalCalories').textContent = meal.calories;
+            document.getElementById('modalTime').textContent = meal.prepTime;
+            document.getElementById('modalCategory').textContent = meal.category;
+
+            const ingredientsDiv = document.getElementById('modalRecipeIngredients');
+            ingredientsDiv.innerHTML = meal.ingredients.map(ing => {
+                const price = ingredientPrices[ing.name] || 10;
+                const ingIcons = {
+                    "Chicken": "fa-drumstick-bite",
+                    "Pork": "fa-bacon",
+                    "Beef": "fa-drumstick-bite",
+                    "Fish": "fa-fish",
+                    "Rice": "fa-seedling",
+                    "Egg": "fa-egg",
+                    "Garlic": "fa-seedling",
+                    "Onion": "fa-seedling",
+                    "Tomato": "fa-seedling",
+                    "Vegetables": "fa-leaf",
+                    "default": "fa-circle"
+                };
+                return `
+                    <div class="recipe-ingredient-item">
+                        <div class="recipe-ingredient-name">
+                            <div class="recipe-ingredient-icon"><i class="fas ${ingIcons[ing.name] || ingIcons.default}"></i></div>
+                            ${ing.name}
+                        </div>
+                        <div style="color:var(--text-secondary);font-weight:600">${ing.qty} ${ing.unit} (₱${price * ing.qty})</div>
+                    </div>
+                `;
+            }).join('');
+
+            const instructionsDiv = document.getElementById('modalInstructions');
+            instructionsDiv.innerHTML = meal.instructions.map((step, index) => `
+                <div class="instruction-step">
+                    <div class="step-number">${index + 1}</div>
+                    <div class="step-text">${step}</div>
+                </div>
+            `).join('');
+
+            document.getElementById('modalSelectText').textContent = isSelected ? 'Remove from List' : 'Add to List';
+            document.getElementById('modalSelectBtn').innerHTML = isSelected 
+                ? '<i class="fas fa-minus"></i> <span>Remove from List</span>' 
+                : '<i class="fas fa-plus"></i> <span>Add to List</span>';
+            
+            document.getElementById('mealModal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('mealModal').classList.remove('show');
+            currentModalMeal = null;
+        }
+
+        function toggleMealFromModal() {
+            if (!currentModalMeal) return;
+            
+            const servingsText = getServingsText(currentModalMeal.servings);
+            
+            if (selectedMeals[currentModalMeal.id]) {
+                delete selectedMeals[currentModalMeal.id];
+                showNotification(`${currentModalMeal.name} removed (${servingsText})`, "warning");
+                setTimeout(() => {
+                    const { budget, remaining } = getBudgetStatus();
+                    if (budget > 0) {
+                        showNotification(`💰 Natitirang budget: ₱${remaining.toLocaleString()}`);
+                    }
+                }, 1500);
+            } else {
+                selectedMeals[currentModalMeal.id] = currentModalMeal;
+                showNotification(`✅ ${currentModalMeal.name} added! (${servingsText})`);
+                setTimeout(showBudgetNotification, 800);
+            }
+            
+            updateAllDisplays();
+            closeModal();
+        }
+
+        // ==========================================
+        // EVENT LISTENERS
+        // ==========================================
+        document.getElementById('budget').addEventListener('input', updateSelectionSummary);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            displayAccounts();
+            
+            // Close modal when clicking outside
+            document.getElementById('mealModal').addEventListener('click', (e) => {
+                if (e.target.id === 'mealModal') closeModal();
+            });
+            
+            // Keyboard support - ESC to close modal
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && document.getElementById('mealModal').classList.contains('show')) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
